@@ -5,8 +5,8 @@ var dh;
 var x;
 var canvas;
 var ctx;
-var mouse_x=0;
-var mouse_y=0;
+var touch_x=0;
+var touch_y=0;
 //------
 var circle_num=5;
 var circle =new Array(circle_num);
@@ -56,7 +56,7 @@ function load(){
     
     
     
-	canvas = document.getElementById("canvassample");
+	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
 	x=0;
 	var t=new Date();
@@ -105,8 +105,8 @@ function move(){
 			circle[i][8]+=-0.05+0.1*Math.random();
 		}
 	}
-	circle[click_count][0]+=(mouse_x-circle[click_count][0])/100;
-	circle[click_count][1]+=(mouse_y-circle[click_count][1])/100;
+	circle[click_count][0]+=(touch_x-circle[click_count][0])/100;
+	circle[click_count][1]+=(touch_y-circle[click_count][1])/100;
 	var t=new Date();
 	if(t.getTime()-circle_timer>500){
 		circle[click_count][7]=-0.1+0.2*Math.random();
@@ -177,16 +177,25 @@ function draw() {
     */
     //----
     ctx.globalCompositeOperation="source-over";
-    ctx.drawImage(img_back, 0*dw, 0*dh, 1080*dw, 1920*dh);
-    ctx.drawImage(img_fore, 0*dw, 0*dh, 1080*dw, 1920*dh);
+    drawImage(img_back, 0, 0, 1080, 1920);
+    drawImage(img_fore, 0, 0, 1080, 1920);
     
-    ctx.font="12pt 'メイリオ'";
+    setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';
-    ctx.fillText("mouse_x : "+mouse_x,50,100+30*0);
-    ctx.fillText("mouse_y : "+mouse_y,50,100+30*1);
+    ctx.fillText("touch_x : "+touch_x,50,100+30*0);
+    ctx.fillText("touch_y : "+touch_y,50,100+30*1);
 	var t=new Date();
 	ctx.fillText("timer   : "+t.getTime(),50,100+30*2);
     ctx.fillText("count   : "+oriduru_count,50,100+30*4);
+}
+//------------------------------------------------------------------------------
+function setFontSize(size){
+    var font_size = size * (dw+dh)/2;
+    ctx.font = font_size + "pt 'メイリオ'";
+}
+//------------------------------------------------------------------------------
+function drawImage(img,x,y,w,h){
+    ctx.drawImage(img, x*dw, y*dh, w*dw, h*dh);
 }
 //------------------------------------------------------------------------------
 function drawLine(x1,y1,x2,y2,r,g,b,a){
@@ -212,23 +221,52 @@ function drawCircle(x,y,r,red,green,blue,alpha){
 	ctx.fill();
 }
 //------------------------------------------------------------------------------
+if(window.TouchEvent){
+    if(document.addEventListener){
+        // タッチを開始すると実行されるイベント
+        document.addEventListener("touchstart",TouchEventFunc);
+        // タッチしたまま平行移動すると実行されるイベント
+        document.addEventListener("touchmove",TouchEventFunc);
+        // タッチを終了すると実行されるイベント
+        document.addEventListener("touchend",TouchEventFunc);
+    }
+}
+//------------------------------------------------------------------------------
+//タッチイベントを設定
+function TouchEventFunc(e){
+    // TouchList オブジェクトを取得
+    var touch_list = e.changedTouches;
+    var num = touch_list.length;
+    for(var i=0;i < num;i++){
+        var touch = touch_list[i];// Touch オブジェクトを取得
+        console.log(touch);// 出力テスト
+    }
+    touch_x = touch_list[0].pageX/dw;
+    touch_y = touch_list[0].pageY/dh;
+    
+}
+//------------------------------------------------------------------------------
 document.onmousemove = function (e){
-    if(!e) e = window.event; // レガシー
-    mouse_x = e.clientX/dw;
-    mouse_y = e.clientY/dh;
-    var scroll_pos = DocumentGetScrollPosition(document);
-    mouse_x += scroll_pos.x/dw;
-    mouse_y += scroll_pos.y/dh;
+    //if(!window.TouchEvent){
+        if(!e) e = window.event; // レガシー
+        touch_x = e.clientX/dw;
+        touch_y = e.clientY/dh;
+        var scroll_pos = DocumentGetScrollPosition(document);
+        touch_x += scroll_pos.x/dw;
+        touch_y += scroll_pos.y/dh;
+    //}
 };
 //------------------------------------------------------------------------------
 document.onmousedown = function (e){
-    if(!e) e = window.event; // レガシー
-	if(circle_stop==-1){
-		circle_stop=click_count;
-		click_count++;
-		if(click_count>=circle_num) click_count=0;
-	}
-	else circle_stop=-1;
+    //if(!window.TouchEvent){
+        if(!e) e = window.event; // レガシー
+        if(circle_stop==-1){
+            circle_stop=click_count;
+            click_count++;
+            if(click_count>=circle_num) click_count=0;
+        }
+        else circle_stop=-1;
+    //}
 };
 //------------------------------------------------------------------------------
 function DocumentGetScrollPosition(document_obj){
@@ -241,7 +279,7 @@ function DocumentGetScrollPosition(document_obj){
 function sizing(){
 	width = document.getElementById("wrapper").clientWidth;
 	height=width*1.7777777;
-	var c = document.getElementById("canvassample");
+	var c = document.getElementById("canvas");
 	c.width=width;
 	c.height=height;
 	dw=width/1080.0;
