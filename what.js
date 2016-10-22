@@ -1,0 +1,198 @@
+var width;
+var height;
+var dw;
+var dh;
+var x;
+var canvas;
+var ctx;
+var mouse_x=0;
+var mouse_y=0;
+//------
+var circle_num=5;
+var circle =new Array(circle_num);
+var click_count=0;
+var circle_stop=-1;
+var circle_timer=0;
+var ball_num=10;
+var ball=new Array(ball_num);
+//------------------------------------------------------------------------------
+function load(){
+	canvas = document.getElementById("canvassample");
+	ctx = canvas.getContext("2d");
+	x=0;
+	var t=new Date();
+	circle_timer=t.getTime();
+	circle[0]=new Array(10,10,5,255,0,0,255,0,0);
+	circle[1]=new Array(10,10,5,200,0,0,255,0,0);
+	circle[2]=new Array(10,10,5,150,0,0,255,0,0);
+	circle[3]=new Array(10,10,5,100,0,0,255,0,0);
+	circle[4]=new Array(10,10,5, 50,0,0,255,0,0);
+	ball[0]=new Array(1960*Math.random(),1080*Math.random(),10,100,100,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[1]=new Array(1960*Math.random(),1080*Math.random(),10,0,100,100,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[2]=new Array(1960*Math.random(),1080*Math.random(),10,100,0,100,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[3]=new Array(1960*Math.random(),1080*Math.random(),10,200,200,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[4]=new Array(1960*Math.random(),1080*Math.random(),10,0,200,200,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[5]=new Array(1960*Math.random(),1080*Math.random(),10,200,0,200,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[6]=new Array(1960*Math.random(),1080*Math.random(),10,200,0,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[7]=new Array(1960*Math.random(),1080*Math.random(),10,0,200,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[8]=new Array(1960*Math.random(),1080*Math.random(),10,0,0,200,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[9]=new Array(1960*Math.random(),1080*Math.random(),10,200,200,200,255,-1+2*Math.random(),-1+2*Math.random());
+	loop();
+}
+//------------------------------------------------------------------------------
+function loop() {
+	sizing();
+	var timer=0+new Date();
+	x++;
+	move();
+	draw();
+	timer=16-(new Date()-timer);
+	if(timer<0) timer=0;
+	setTimeout("loop()", timer);
+}
+//------------------------------------------------------------------------------
+function move(){
+	//----
+	for(var i=0;i<circle_num;i++){
+		if(i!=circle_stop){
+			circle[i][0]+=circle[i][7];
+			circle[i][1]+=circle[i][8];
+			circle[i][7]+=-0.05+0.1*Math.random();
+			circle[i][8]+=-0.05+0.1*Math.random();
+		}
+	}
+	circle[click_count][0]+=(mouse_x-circle[click_count][0])/100;
+	circle[click_count][1]+=(mouse_y-circle[click_count][1])/100;
+	var t=new Date();
+	if(t.getTime()-circle_timer>500){
+		circle[click_count][7]=-0.1+0.2*Math.random();
+		circle[click_count][8]=-0.1+0.2*Math.random();
+		click_count++;
+		if(click_count>=circle_num) click_count=0;
+		if(circle_stop==click_count) click_count++;
+		if(click_count>=circle_num) click_count=0;
+		circle_timer=t.getTime();
+	}
+	//----
+	for(var i=0;i<ball_num;i++){
+		var l=false;
+		var r=false;
+		var t=false;
+		var b=false;
+		for(var j=0;j<circle_num;j++){
+			if(ball[i][0]>circle[j][0]) l=true;
+			if(ball[i][0]<circle[j][0]) r=true;
+			if(ball[i][1]>circle[j][1]) t=true;
+			if(ball[i][1]<circle[j][1]) b=true;
+		}
+		if(l && r && t && b){
+			var x=0,y=0;
+			for(var j=0;j<circle_num;j++){
+				x+=circle[j][0];
+				y+=circle[j][1];
+			}
+			ball[i][0]+=((x/circle_num)-ball[i][0])/100;
+			ball[i][1]+=((y/circle_num)-ball[i][1])/100;
+		}else{
+			ball[i][0]+=ball[i][7];
+			ball[i][1]+=ball[i][8];
+			if(ball[i][0]<0) ball[i][7]*=-1;
+			if(ball[i][0]>1960) ball[i][7]*=-1;
+			if(ball[i][1]<0) ball[i][8]*=-1;
+			if(ball[i][1]>1080) ball[i][8]*=-1;
+		}
+	}
+}
+//------------------------------------------------------------------------------
+function draw() {
+	//if(circle_stop==-1) drawRect(980,540,1960,1080,255,255,255,255);
+	//else drawRect(980,540,1960,1080,0,0,0,255);
+	drawRect(980,540,1960,1080,0,0,0,255);
+	//----
+	for(var i=0;i<ball_num;i++){
+		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][3],ball[i][4],ball[i][5],ball[i][6]);
+		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][4],ball[i][5],ball[i][3],ball[i][6]);
+		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][5],ball[i][3],ball[i][4],ball[i][6]);
+	}
+	//----
+	if(circle_stop!=-1){
+		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,255,0,0,255);
+		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,0,255,0,255);
+		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,0,0,255,255);
+		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,255,255,0,255);
+		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,255,0,255,255);
+		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,0,255,255,255);
+	}
+	for(var i=0;i<circle_num;i++) drawCircle(circle[i][0],circle[i][1],circle[i][2],circle[i][3],circle[i][4],circle[i][5],circle[i][6]);
+	for(var i=0;i<circle_num-1;i++) drawLine(circle[i][0],circle[i][1],circle[i+1][0],circle[i+1][1],200,0,0,255);
+	drawLine(circle[0][0],circle[0][1],circle[4][0],circle[4][1],200,0,0,255);
+	for(var i=0;i<circle_num-2;i++) drawLine(circle[i][0],circle[i][1],circle[i+2][0],circle[i+2][1],200,0,0,255);
+	drawLine(circle[0][0],circle[0][1],circle[3][0],circle[3][1],200,0,0,255);
+	drawLine(circle[1][0],circle[1][1],circle[4][0],circle[4][1],200,0,0,255);
+    //----
+    ctx.font="12pt 'メイリオ'";
+    ctx.fillStyle ='rgb(255,255,255)';
+    ctx.fillText("mouse_x : "+mouse_x,50,100+30*0);
+    ctx.fillText("mouse_y : "+mouse_y,50,100+30*1);
+	var t=new Date();
+	ctx.fillText("timer   : "+t.getTime(),50,100+30*2);
+}
+//------------------------------------------------------------------------------
+function drawLine(x1,y1,x2,y2,r,g,b,a){
+	ctx.globalCompositeOperation="lighter";
+	ctx.strokeStyle ='rgba('+r+','+g+','+b+','+a+')';
+	ctx.beginPath();
+	ctx.moveTo(x1*dw,y1*dh);
+	ctx.lineTo(x2*dw,y2*dh);
+	ctx.stroke();
+}
+//------------------------------------------------------------------------------
+function drawRect(x,y,w,h,r,g,b,a){
+	ctx.globalCompositeOperation="lighter";
+	ctx.fillStyle ='rgba('+r+','+g+','+b+','+a+')';
+	ctx.fillRect((x-w/2)*dw, (y-h/2)*dh, w*dw, h*dh);
+}
+//------------------------------------------------------------------------------
+function drawCircle(x,y,r,red,green,blue,alpha){
+	ctx.globalCompositeOperation="lighter";
+	ctx.fillStyle ='rgba('+red+','+green+','+blue+','+alpha+')';
+	ctx.beginPath();
+	ctx.arc(x*dw,y*dw,r+(dw+dw)/2,0,2*Math.PI,true);
+	ctx.fill();
+}
+//------------------------------------------------------------------------------
+document.onmousemove = function (e){
+    if(!e) e = window.event; // レガシー
+    mouse_x = e.clientX/dw;
+    mouse_y = e.clientY/dh;
+    var scroll_pos = DocumentGetScrollPosition(document);
+    mouse_x += scroll_pos.x/dw;
+    mouse_y += scroll_pos.y/dh;
+};
+//------------------------------------------------------------------------------
+document.onmousedown = function (e){
+    if(!e) e = window.event; // レガシー
+	if(circle_stop==-1){
+		circle_stop=click_count;
+		click_count++;
+		if(click_count>=circle_num) click_count=0;
+	}
+	else circle_stop=-1;
+};
+//------------------------------------------------------------------------------
+function DocumentGetScrollPosition(document_obj){
+    return{
+	x:document_obj.body.scrollLeft || document_obj.documentElement.scrollLeft,
+	y:document_obj.body.scrollTop  || document_obj.documentElement.scrollTop
+    };
+}
+//------------------------------------------------------------------------------
+function sizing(){
+	width = document.getElementById("wrapper").clientWidth;
+	height=width*0.55;
+	var c = document.getElementById("canvassample");
+	c.width=width;
+	c.height=height;
+	dw=width/1960.0;
+	dh=height/1080.0;
+}
