@@ -27,16 +27,16 @@ function load(){
 	circle[2]=new Array(10,10,5,150,0,0,255,0,0);
 	circle[3]=new Array(10,10,5,100,0,0,255,0,0);
 	circle[4]=new Array(10,10,5, 50,0,0,255,0,0);
-	ball[0]=new Array(1960*Math.random(),1080*Math.random(),10,100,100,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[1]=new Array(1960*Math.random(),1080*Math.random(),10,0,100,100,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[2]=new Array(1960*Math.random(),1080*Math.random(),10,100,0,100,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[3]=new Array(1960*Math.random(),1080*Math.random(),10,200,200,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[4]=new Array(1960*Math.random(),1080*Math.random(),10,0,200,200,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[5]=new Array(1960*Math.random(),1080*Math.random(),10,200,0,200,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[6]=new Array(1960*Math.random(),1080*Math.random(),10,200,0,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[7]=new Array(1960*Math.random(),1080*Math.random(),10,0,200,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[8]=new Array(1960*Math.random(),1080*Math.random(),10,0,0,200,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[9]=new Array(1960*Math.random(),1080*Math.random(),10,200,200,200,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[0]=new Array(1080*Math.random(),1920*Math.random(),10,100,100,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[1]=new Array(1080*Math.random(),1920*Math.random(),10,0,100,100,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[2]=new Array(1080*Math.random(),1920*Math.random(),10,100,0,100,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[3]=new Array(1080*Math.random(),1920*Math.random(),10,200,200,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[4]=new Array(1080*Math.random(),1920*Math.random(),10,0,200,200,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[5]=new Array(1080*Math.random(),1920*Math.random(),10,200,0,200,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[6]=new Array(1080*Math.random(),1920*Math.random(),10,200,0,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[7]=new Array(1080*Math.random(),1920*Math.random(),10,0,200,0,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[8]=new Array(1080*Math.random(),1920*Math.random(),10,0,0,200,255,-1+2*Math.random(),-1+2*Math.random());
+	ball[9]=new Array(1080*Math.random(),1920*Math.random(),10,200,200,200,255,-1+2*Math.random(),-1+2*Math.random());
 	loop();
 }
 //------------------------------------------------------------------------------
@@ -97,17 +97,17 @@ function move(){
 			ball[i][0]+=ball[i][7];
 			ball[i][1]+=ball[i][8];
 			if(ball[i][0]<0) ball[i][7]*=-1;
-			if(ball[i][0]>1960) ball[i][7]*=-1;
+			if(ball[i][0]>1080) ball[i][7]*=-1;
 			if(ball[i][1]<0) ball[i][8]*=-1;
-			if(ball[i][1]>1080) ball[i][8]*=-1;
+			if(ball[i][1]>1920) ball[i][8]*=-1;
 		}
 	}
 }
 //------------------------------------------------------------------------------
 function draw() {
-	//if(circle_stop==-1) drawRect(980,540,1960,1080,255,255,255,255);
-	//else drawRect(980,540,1960,1080,0,0,0,255);
-	drawRect(980,540,1960,1080,0,0,0,255);
+	//if(circle_stop==-1) drawRect(1080/2,1920/2,1080,1920,255,255,255,255);
+	//else drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
+	drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
 	//----
 	for(var i=0;i<ball_num;i++){
 		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][3],ball[i][4],ball[i][5],ball[i][6]);
@@ -189,10 +189,10 @@ function DocumentGetScrollPosition(document_obj){
 //------------------------------------------------------------------------------
 function sizing(){
 	width = document.getElementById("wrapper").clientWidth;
-	height=width*0.55;
+	height=width*1.7777777;
 	var c = document.getElementById("canvassample");
 	c.width=width;
 	c.height=height;
-	dw=width/1960.0;
-	dh=height/1080.0;
+	dw=width/1080.0;
+	dh=height/1920.0;
 }
