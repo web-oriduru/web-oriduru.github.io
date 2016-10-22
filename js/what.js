@@ -15,13 +15,57 @@ var circle_stop=-1;
 var circle_timer=0;
 var ball_num=10;
 var ball=new Array(ball_num);
+var oriduru_count=0;
+var img_back;
+var img_fore;
 //------------------------------------------------------------------------------
 function load(){
+    var ncmb = new NCMB("ff35ae3dd5a5aa93d58f4981e263cf74a9e9a1de08088807440a75b62e64bfd1","3e58744998bc64a634d8bb28a5e3237eb7ae8b2047252225dc501eedf62d0dbc");
+    
+    /*
+    var TestClass = ncmb.DataStore("TestClass");
+    // データストアへの登録
+    var testClass = new TestClass();
+    testClass.set("message", "Hello, NCMB!");
+    testClass.save()
+        .then(function(){})
+    .catch(function(err){});
+    
+    //データ取得
+    var GameScore = ncmb.DataStore("TestClass");
+    GameScore.fetchAll()
+    .then(function(results){
+          oriduru_count = results.length;
+    })
+    .catch(function(err){
+           oriduru_count = 1;
+    });
+      */
+    
+    
+    
+    /*
+    var text1 = "「Webおりづる」で折り鶴をおりました　「";
+    var text2 = "ここにコメント";
+    var text3 = "」 web-oriduru.github.io";
+    location.href = "https://twitter.com/intent/tweet?text="+ encodeURIComponent(text1)+ encodeURIComponent(text2)+ encodeURIComponent(text3)+"&hashtags=web_oriduru";
+    */
+    
+    
+    
+    
+    
+    
 	canvas = document.getElementById("canvassample");
 	ctx = canvas.getContext("2d");
 	x=0;
 	var t=new Date();
-	circle_timer=t.getTime();
+    img_back = new Image();
+    img_back.src="resources/back01.png?"+t.getTime();
+    img_fore = new Image();
+    img_fore.src="resources/fore01.png?"+t.getTime();
+    
+    circle_timer=t.getTime();
 	circle[0]=new Array(10,10,5,255,0,0,255,0,0);
 	circle[1]=new Array(10,10,5,200,0,0,255,0,0);
 	circle[2]=new Array(10,10,5,150,0,0,255,0,0);
@@ -108,6 +152,7 @@ function draw() {
 	//if(circle_stop==-1) drawRect(1080/2,1920/2,1080,1920,255,255,255,255);
 	//else drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
 	drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
+    /*
 	//----
 	for(var i=0;i<ball_num;i++){
 		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][3],ball[i][4],ball[i][5],ball[i][6]);
@@ -129,13 +174,19 @@ function draw() {
 	for(var i=0;i<circle_num-2;i++) drawLine(circle[i][0],circle[i][1],circle[i+2][0],circle[i+2][1],200,0,0,255);
 	drawLine(circle[0][0],circle[0][1],circle[3][0],circle[3][1],200,0,0,255);
 	drawLine(circle[1][0],circle[1][1],circle[4][0],circle[4][1],200,0,0,255);
+    */
     //----
+    ctx.globalCompositeOperation="source-over";
+    ctx.drawImage(img_back, 0*dw, 0*dh, 1080*dw, 1920*dh);
+    ctx.drawImage(img_fore, 0*dw, 0*dh, 1080*dw, 1920*dh);
+    
     ctx.font="12pt 'メイリオ'";
     ctx.fillStyle ='rgb(255,255,255)';
     ctx.fillText("mouse_x : "+mouse_x,50,100+30*0);
     ctx.fillText("mouse_y : "+mouse_y,50,100+30*1);
 	var t=new Date();
 	ctx.fillText("timer   : "+t.getTime(),50,100+30*2);
+    ctx.fillText("count   : "+oriduru_count,50,100+30*4);
 }
 //------------------------------------------------------------------------------
 function drawLine(x1,y1,x2,y2,r,g,b,a){
