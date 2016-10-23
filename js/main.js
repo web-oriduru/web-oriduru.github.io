@@ -5,6 +5,7 @@ var dh;
 var x;
 var canvas;
 var ctx;
+var touching = false;
 var touch_x=0;
 var touch_y=0;
 //------
@@ -18,14 +19,15 @@ var ball=new Array(ball_num);
 var oriduru_count=0;
 var img_back;
 var img_fore;
+var oriduru;
+var timer;
 //------------------------------------------------------------------------------
 function load(){
-    //document.body.addEventListener('touchmove', function(e){e.preventDefault();});
-    var ncmb = new NCMB("ff35ae3dd5a5aa93d58f4981e263cf74a9e9a1de08088807440a75b62e64bfd1","3e58744998bc64a634d8bb28a5e3237eb7ae8b2047252225dc501eedf62d0dbc");
-    
     /*
-    var TestClass = ncmb.DataStore("TestClass");
+    var ncmb = new NCMB("ff35ae3dd5a5aa93d58f4981e263cf74a9e9a1de08088807440a75b62e64bfd1","3e58744998bc64a634d8bb28a5e3237eb7ae8b2047252225dc501eedf62d0dbc");
+     
     // データストアへの登録
+    var TestClass = ncmb.DataStore("TestClass");
     var testClass = new TestClass();
     testClass.set("message", "Hello, NCMB!");
     testClass.save()
@@ -56,17 +58,20 @@ function load(){
     
     
     
-    
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
+    timer=new Date();
 	x=0;
-	var t=new Date();
     img_back = new Image();
-    img_back.src="resources/back01.png?"+t.getTime();
+    img_back.src="resources/back01.png?"+timer.getTime();
     img_fore = new Image();
-    img_fore.src="resources/fore01.png?"+t.getTime();
+    img_fore.src="resources/fore01.png?"+timer.getTime();
     
-    circle_timer=t.getTime();
+    
+    oriduru = new Oriduru();
+    
+    
+    circle_timer=timer.getTime();
 	circle[0]=new Array(10,10,5,255,0,0,255,0,0);
 	circle[1]=new Array(10,10,5,200,0,0,255,0,0);
 	circle[2]=new Array(10,10,5,150,0,0,255,0,0);
@@ -98,6 +103,8 @@ function loop() {
 //------------------------------------------------------------------------------
 function move(){
 	//----
+    oriduru.move();
+    
 	for(var i=0;i<circle_num;i++){
 		if(i!=circle_stop){
 			circle[i][0]+=circle[i][7];
@@ -179,7 +186,8 @@ function draw() {
     //----
     ctx.globalCompositeOperation="source-over";
     drawImage(img_back, 0, 0, 1080, 1920);
-    drawImage(img_fore, 0, 0, 1080, 1920);
+    
+    oriduru.draw();
     
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';
@@ -188,6 +196,12 @@ function draw() {
 	var t=new Date();
 	ctx.fillText("timer   : "+t.getTime(),50,100+30*2);
     ctx.fillText("count   : "+oriduru_count,50,100+30*4);
+}
+//------------------------------------------------------------------------------
+function creatImage(file_name){
+    var img = new Image();
+    img.src = "resources/" + file_name + ".png?" + timer.getTime();
+    return img;
 }
 //------------------------------------------------------------------------------
 function setFontSize(size){
@@ -225,26 +239,56 @@ function drawCircle(x,y,r,red,green,blue,alpha){
 if(window.TouchEvent){
     if(document.addEventListener){
         // タッチを開始すると実行されるイベント
-        document.addEventListener("touchstart",TouchEventFunc);
+        document.addEventListener("touchstart",TouchStart);
         // タッチしたまま平行移動すると実行されるイベント
-        document.addEventListener("touchmove",TouchEventFunc);
+        document.addEventListener("touchmove",TouchMove);
         // タッチを終了すると実行されるイベント
-        document.addEventListener("touchend",TouchEventFunc);
+        document.addEventListener("touchend",TouchEnd);
     }
 }
 //------------------------------------------------------------------------------
-//タッチイベントを設定
-function TouchEventFunc(e){
+function TouchStart(e){
     // TouchList オブジェクトを取得
     var touch_list = e.changedTouches;
     var num = touch_list.length;
     for(var i=0;i < num;i++){
         var touch = touch_list[i];// Touch オブジェクトを取得
-        console.log(touch);// 出力テスト
+        //console.log(touch);// 出力テスト
     }
     touch_x = touch_list[0].pageX/dw;
     touch_y = touch_list[0].pageY/dh;
+    touching = true;
     
+    if(touch_x>50 && touch_x<1080-50){
+        e.preventDefault();
+    }else{
+        
+    }
+}
+//------------------------------------------------------------------------------
+function TouchMove(e){
+    // TouchList オブジェクトを取得
+    var touch_list = e.changedTouches;
+    var num = touch_list.length;
+    for(var i=0;i < num;i++){
+        var touch = touch_list[i];// Touch オブジェクトを取得
+        //console.log(touch);// 出力テスト
+    }
+    touch_x = touch_list[0].pageX/dw;
+    touch_y = touch_list[0].pageY/dh;
+}
+//------------------------------------------------------------------------------
+function TouchEnd(e){
+    // TouchList オブジェクトを取得
+    var touch_list = e.changedTouches;
+    var num = touch_list.length;
+    for(var i=0;i < num;i++){
+        var touch = touch_list[i];// Touch オブジェクトを取得
+        //console.log(touch);// 出力テスト
+    }
+    touch_x = touch_list[0].pageX/dw;
+    touch_y = touch_list[0].pageY/dh;
+    touching = false;
 }
 //------------------------------------------------------------------------------
 document.onmousemove = function (e){
