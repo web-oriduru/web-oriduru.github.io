@@ -38,6 +38,12 @@ class Oriduru {
             this.y1 = 800;
             this.x2 = 500;
             this.y2 = 500;
+            var input_text = window.prompt("おりづるにコメントをつけることができます", "");
+            if(input_text != "" && input_text != null){
+                location.href = "https://twitter.com/intent/tweet?text="　+ "「Webおりづる」で折り鶴をおりました　「" + encodeURIComponent(input_text)　+ "」 web-oriduru.github.io" +"&hashtags=web_oriduru";
+            }else{
+                
+            }
         }
     }
     
