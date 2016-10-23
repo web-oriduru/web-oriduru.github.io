@@ -43,11 +43,11 @@ class Oriduru {
     
     move(){
         if(touching){
-            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 200){
+            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 300){
                 this.touch_start = true;
                 console.log("touch!!!!!");
             }
-            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 200){
+            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 300){
                 this.fold();
             }
         }else{
