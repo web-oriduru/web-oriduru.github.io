@@ -39,13 +39,15 @@ class Oriduru {
             this.y1 = 800;
             this.x2 = 500;
             this.y2 = 500;
-            var dataurl = canvas.toDataURL();
-            location.href = dataurl;
         }
     }
     
     move(){
         if(touching){
+            
+            var dataurl = canvas.toDataURL();
+            location.href = dataurl;
+            
             if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 300){
                 this.touch_start = true;
                 console.log("touch!!!!!");
