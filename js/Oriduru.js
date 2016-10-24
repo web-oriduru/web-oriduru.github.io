@@ -46,7 +46,7 @@ class Oriduru {
         if(touching){
             
             var dataurl = canvas.toDataURL();
-            location.href = dataurl;
+            document.getElementById("image_png").src = dataurl;
             
             if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 300){
                 this.touch_start = true;
