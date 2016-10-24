@@ -45,7 +45,7 @@ class Oriduru {
     move(){
         if(touching){
             
-            location.href = canvas.toDataURL();
+            location.href = "<img src='" + canvas.toDataURL() +"'>";
             
             
             if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 300){
