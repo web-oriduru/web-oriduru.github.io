@@ -15,6 +15,7 @@ class Oriduru {
         touching=false;
         this.touch_start = false;
         this.num++;
+        delete this.img;
         if(this.num==1){
             this.img = this.next_img;
             this.next_img = creatImage("fore02");
@@ -38,12 +39,8 @@ class Oriduru {
             this.y1 = 800;
             this.x2 = 500;
             this.y2 = 500;
-            var input_text = window.prompt("おりづるにコメントをつけることができます", "");
-            if(input_text != "" && input_text != null){
-                location.href = "https://twitter.com/intent/tweet?text="　+ "「Webおりづる」で折り鶴をおりました　「" + encodeURIComponent(input_text)　+ "」 web-oriduru.github.io" +"&hashtags=web_oriduru";
-            }else{
-                
-            }
+            var dataurl = canvas.toDataURL();
+            location.href = dataurl;
         }
     }
     
