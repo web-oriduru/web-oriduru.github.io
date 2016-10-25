@@ -14,14 +14,12 @@
 		</style>
         <script>
             function load(){
-                document.getElementById("img").src = localStorage.getItem("image_png");
+                document.getElementById("image_png").src = localStorage.getItem("image_png");
                 console.log(localStorage.getItem("image_png"));
             }
         </script>
 	</head>
 	<body onLoad="load()">
-		<div id="wrapper">
-			<img id="img" width="1080" height="1920">
-		</div>
+        <img src="" id="image_png" width="1080" height="1920">
 	</body>
 </html>
