@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>画像を保存</title>
+		<style>
+			.wrapper{
+  				width: 100%;
+  				height: 100%;
+			}
+			body {
+			  margin: 0;
+			}
+		</style>
+        <script>
+            function load(){
+                document.getElementById("img").src = localStorage.getItem("image_png");
+            }
+        </script>
+	</head>
+	<body onLoad="load()">
+		<div id="wrapper">
+			<img id="img">
+		</div>
+	</body>
+</html>

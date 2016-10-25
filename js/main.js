@@ -118,104 +118,29 @@ function loop() {
 }
 //------------------------------------------------------------------------------
 function move(){
-	//----
+
     paper.move();
     
+    /*
     for(var i=0;i<oridurus.length;i++){
         oridurus[i].move(oridurus);
     }
-    
-    
-    
-    
-	for(var i=0;i<circle_num;i++){
-		if(i!=circle_stop){
-			circle[i][0]+=circle[i][7];
-			circle[i][1]+=circle[i][8];
-			circle[i][7]+=-0.05+0.1*Math.random();
-			circle[i][8]+=-0.05+0.1*Math.random();
-		}
-	}
-	circle[click_count][0]+=(touch_x-circle[click_count][0])/100;
-	circle[click_count][1]+=(touch_y-circle[click_count][1])/100;
-	var t=new Date();
-	if(t.getTime()-circle_timer>500){
-		circle[click_count][7]=-0.1+0.2*Math.random();
-		circle[click_count][8]=-0.1+0.2*Math.random();
-		click_count++;
-		if(click_count>=circle_num) click_count=0;
-		if(circle_stop==click_count) click_count++;
-		if(click_count>=circle_num) click_count=0;
-		circle_timer=t.getTime();
-	}
-	//----
-	for(var i=0;i<ball_num;i++){
-		var l=false;
-		var r=false;
-		var t=false;
-		var b=false;
-		for(var j=0;j<circle_num;j++){
-			if(ball[i][0]>circle[j][0]) l=true;
-			if(ball[i][0]<circle[j][0]) r=true;
-			if(ball[i][1]>circle[j][1]) t=true;
-			if(ball[i][1]<circle[j][1]) b=true;
-		}
-		if(l && r && t && b){
-			var x=0,y=0;
-			for(var j=0;j<circle_num;j++){
-				x+=circle[j][0];
-				y+=circle[j][1];
-			}
-			ball[i][0]+=((x/circle_num)-ball[i][0])/100;
-			ball[i][1]+=((y/circle_num)-ball[i][1])/100;
-		}else{
-			ball[i][0]+=ball[i][7];
-			ball[i][1]+=ball[i][8];
-			if(ball[i][0]<0) ball[i][7]*=-1;
-			if(ball[i][0]>1080) ball[i][7]*=-1;
-			if(ball[i][1]<0) ball[i][8]*=-1;
-			if(ball[i][1]>1920) ball[i][8]*=-1;
-		}
-	}
+    */
 }
 //------------------------------------------------------------------------------
 function draw() {
-	//if(circle_stop==-1) drawRect(1080/2,1920/2,1080,1920,255,255,255,255);
-	//else drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
-	drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
-    /*
-	//----
-	for(var i=0;i<ball_num;i++){
-		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][3],ball[i][4],ball[i][5],ball[i][6]);
-		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][4],ball[i][5],ball[i][3],ball[i][6]);
-		drawCircle(ball[i][0]+50*Math.random(),ball[i][1]+50*Math.random(),ball[i][2],ball[i][5],ball[i][3],ball[i][4],ball[i][6]);
-	}
-	//----
-	if(circle_stop!=-1){
-		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,255,0,0,255);
-		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,0,255,0,255);
-		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,0,0,255,255);
-		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,255,255,0,255);
-		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,255,0,255,255);
-		drawCircle(circle[circle_stop][0]-10+20*Math.random(),circle[circle_stop][1]-10+20*Math.random(),circle[circle_stop][2]*3,0,255,255,255);
-	}
-	for(var i=0;i<circle_num;i++) drawCircle(circle[i][0],circle[i][1],circle[i][2],circle[i][3],circle[i][4],circle[i][5],circle[i][6]);
-	for(var i=0;i<circle_num-1;i++) drawLine(circle[i][0],circle[i][1],circle[i+1][0],circle[i+1][1],200,0,0,255);
-	drawLine(circle[0][0],circle[0][1],circle[4][0],circle[4][1],200,0,0,255);
-	for(var i=0;i<circle_num-2;i++) drawLine(circle[i][0],circle[i][1],circle[i+2][0],circle[i+2][1],200,0,0,255);
-	drawLine(circle[0][0],circle[0][1],circle[3][0],circle[3][1],200,0,0,255);
-	drawLine(circle[1][0],circle[1][1],circle[4][0],circle[4][1],200,0,0,255);
-    */
-    //----
     ctx.globalCompositeOperation="source-over";
+	drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
+    
     drawImage(img_back, 0, 0, 1080, 1920,0,255);
     
     paper.draw();
     
+    /*
     for(var i=0;i<oridurus.length;i++){
         oridurus[i].draw();
     }
-    
+    */
     
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';

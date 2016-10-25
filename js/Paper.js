@@ -39,6 +39,11 @@ class Paper {
             this.y1 = 800;
             this.x2 = 500;
             this.y2 = 500;
+            
+            
+            //localStorage.setItem("image_png",canvas.toDataURL());
+            location.href = "image-png.html"
+            
         }
     }
     
