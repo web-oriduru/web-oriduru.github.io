@@ -19,8 +19,9 @@ var ball=new Array(ball_num);
 var oriduru_count=0;
 var img_back;
 var img_fore;
-var oriduru;
 var timer;
+var paper;
+var oridurus = new Array(80);
 //------------------------------------------------------------------------------
 function load(){
     /*
@@ -74,7 +75,16 @@ function load(){
     img_fore.src="resources/fore01.png?"+timer.getTime();
     
     
-    oriduru = new Oriduru();
+    paper = new Paper();
+    for(var i=0;i<oridurus.length;i++){
+        oridurus[i] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-Math.floor(Math.random()*1000));
+    }
+    oridurus[0] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*0);
+    oridurus[1] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*1);
+    oridurus[2] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*2);
+    oridurus[3] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*3);
+    oridurus[4] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*4);
+    oridurus[5] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*5);
     
     
     circle_timer=timer.getTime();
@@ -109,7 +119,14 @@ function loop() {
 //------------------------------------------------------------------------------
 function move(){
 	//----
-    oriduru.move();
+    paper.move();
+    
+    for(var i=0;i<oridurus.length;i++){
+        oridurus[i].move(oridurus);
+    }
+    
+    
+    
     
 	for(var i=0;i<circle_num;i++){
 		if(i!=circle_stop){
@@ -191,9 +208,14 @@ function draw() {
     */
     //----
     ctx.globalCompositeOperation="source-over";
-    drawImage(img_back, 0, 0, 1080, 1920);
+    drawImage(img_back, 0, 0, 1080, 1920,0,255);
     
-    oriduru.draw();
+    paper.draw();
+    
+    for(var i=0;i<oridurus.length;i++){
+        oridurus[i].draw();
+    }
+    
     
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';
@@ -215,12 +237,17 @@ function setFontSize(size){
     ctx.font = font_size + "pt 'メイリオ'";
 }
 //------------------------------------------------------------------------------
-function drawImage(img,x,y,w,h){
-    ctx.drawImage(img, x*dw, y*dh, w*dw, h*dh);
+function drawImage(img,x,y,w,h,r,a){
+    ctx.save();
+    ctx.globalAlpha = a
+    ctx.translate((x+w/2)*dw,(y+h/2)*dh);
+    ctx.rotate(r * Math.PI / 180);
+    ctx.drawImage(img, (-w/2)*dw, (-h/2)*dh, w*dw, h*dh);
+    ctx.restore();
 }
 //------------------------------------------------------------------------------
 function drawLine(x1,y1,x2,y2,r,g,b,a){
-	ctx.globalCompositeOperation="lighter";
+	//ctx.globalCompositeOperation="lighter";
 	ctx.strokeStyle ='rgba('+r+','+g+','+b+','+a+')';
 	ctx.beginPath();
 	ctx.moveTo(x1*dw,y1*dh);
@@ -229,13 +256,13 @@ function drawLine(x1,y1,x2,y2,r,g,b,a){
 }
 //------------------------------------------------------------------------------
 function drawRect(x,y,w,h,r,g,b,a){
-	ctx.globalCompositeOperation="lighter";
+	//ctx.globalCompositeOperation="lighter";
 	ctx.fillStyle ='rgba('+r+','+g+','+b+','+a+')';
 	ctx.fillRect((x-w/2)*dw, (y-h/2)*dh, w*dw, h*dh);
 }
 //------------------------------------------------------------------------------
 function drawCircle(x,y,r,red,green,blue,alpha){
-	ctx.globalCompositeOperation="lighter";
+	//ctx.globalCompositeOperation="lighter";
 	ctx.fillStyle ='rgba('+red+','+green+','+blue+','+alpha+')';
 	ctx.beginPath();
 	ctx.arc(x*dw,y*dw,r+(dw+dw)/2,0,2*Math.PI,true);
