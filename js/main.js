@@ -121,11 +121,11 @@ function move(){
 
     paper.move();
     
-    /*
+    
     for(var i=0;i<oridurus.length;i++){
         oridurus[i].move(oridurus);
     }
-    */
+    
 }
 //------------------------------------------------------------------------------
 function draw() {
@@ -136,11 +136,11 @@ function draw() {
     
     paper.draw();
     
-    /*
+    
     for(var i=0;i<oridurus.length;i++){
         oridurus[i].draw();
     }
-    */
+    
     
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';

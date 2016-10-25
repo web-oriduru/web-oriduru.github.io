@@ -41,8 +41,8 @@ class Paper {
             this.y2 = 500;
             
             
-            localStorage.setItem("image_png",canvas.toDataURL());
-            location.href = "image-png.html"
+            //localStorage.setItem("image_png",canvas.toDataURL());
+            //location.href = "image-png.html"
             
         }
     }
