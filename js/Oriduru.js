@@ -3,7 +3,7 @@ class Oriduru {
         this.img = creatImage(img);
         this.x = x;
         this.y = y;
-        this.vx = Math.floor(Math.random()*3)-1;
+        this.vx = 0;//Math.floor(Math.random()*3)-1;
         this.vy = 10;
         this.size = 300;
         this.rotate =Math.floor(Math.random()*360);
@@ -22,7 +22,8 @@ class Oriduru {
                 if(this.y<oridurus[i].y){
                     var j = 0;
                     for(j=0;j<5;j++){
-                        this.vx = Math.floor(Math.random()*4)-2;
+                        this.vx = Math.floor(Math.random()*6)-3;
+                        this.vy = Math.floor(Math.random()*3)+1;
                         if(!(Math.sqrt(Math.pow((this.x+this.vx)-oridurus[i].x,2) + Math.pow((this.y+this.vy)-oridurus[i].y,2)) < this.size*size_rate)){
                             break;
                         }

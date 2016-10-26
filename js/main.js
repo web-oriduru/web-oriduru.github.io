@@ -2,24 +2,14 @@ var width;
 var height;
 var dw;
 var dh;
-var x;
 var canvas;
 var ctx;
 var touching = false;
 var touch_x=0;
 var touch_y=0;
-//------
-var circle_num=5;
-var circle =new Array(circle_num);
-var click_count=0;
-var circle_stop=-1;
-var circle_timer=0;
-var ball_num=10;
-var ball=new Array(ball_num);
-var oriduru_count=0;
-var img_back;
-var img_fore;
 var timer;
+//------
+var oriduru_count
 var paper;
 var oridurus = new Array(80);
 //------------------------------------------------------------------------------
@@ -68,14 +58,8 @@ function load(){
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
     timer=new Date();
-	x=0;
-    img_back = new Image();
-    img_back.src="resources/back01.png?"+timer.getTime();
-    img_fore = new Image();
-    img_fore.src="resources/fore01.png?"+timer.getTime();
-    
-    
-    paper = new Paper();
+
+    paper = new Paper("back01");
     for(var i=0;i<oridurus.length;i++){
         oridurus[i] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-Math.floor(Math.random()*1000));
     }
@@ -86,30 +70,12 @@ function load(){
     oridurus[4] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*4);
     oridurus[5] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*5);
     
-    
-    circle_timer=timer.getTime();
-	circle[0]=new Array(10,10,5,255,0,0,255,0,0);
-	circle[1]=new Array(10,10,5,200,0,0,255,0,0);
-	circle[2]=new Array(10,10,5,150,0,0,255,0,0);
-	circle[3]=new Array(10,10,5,100,0,0,255,0,0);
-	circle[4]=new Array(10,10,5, 50,0,0,255,0,0);
-	ball[0]=new Array(1080*Math.random(),1920*Math.random(),10,100,100,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[1]=new Array(1080*Math.random(),1920*Math.random(),10,0,100,100,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[2]=new Array(1080*Math.random(),1920*Math.random(),10,100,0,100,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[3]=new Array(1080*Math.random(),1920*Math.random(),10,200,200,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[4]=new Array(1080*Math.random(),1920*Math.random(),10,0,200,200,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[5]=new Array(1080*Math.random(),1920*Math.random(),10,200,0,200,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[6]=new Array(1080*Math.random(),1920*Math.random(),10,200,0,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[7]=new Array(1080*Math.random(),1920*Math.random(),10,0,200,0,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[8]=new Array(1080*Math.random(),1920*Math.random(),10,0,0,200,255,-1+2*Math.random(),-1+2*Math.random());
-	ball[9]=new Array(1080*Math.random(),1920*Math.random(),10,200,200,200,255,-1+2*Math.random(),-1+2*Math.random());
 	loop();
 }
 //------------------------------------------------------------------------------
 function loop() {
 	sizing();
 	var timer=0+new Date();
-	x++;
 	move();
 	draw();
 	timer=16-(new Date()-timer);
@@ -123,7 +89,7 @@ function move(){
     
     
     for(var i=0;i<oridurus.length;i++){
-        oridurus[i].move(oridurus);
+        //oridurus[i].move(oridurus);
     }
     
 }
@@ -131,14 +97,12 @@ function move(){
 function draw() {
     ctx.globalCompositeOperation="source-over";
 	drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
-    
-    drawImage(img_back, 0, 0, 1080, 1920,0,255);
+    drawText("Now Loading...",300,1920/2,64,255,255,255,255);
     
     paper.draw();
     
-    
     for(var i=0;i<oridurus.length;i++){
-        oridurus[i].draw();
+        //oridurus[i].draw();
     }
     
     
@@ -164,11 +128,17 @@ function setFontSize(size){
 //------------------------------------------------------------------------------
 function drawImage(img,x,y,w,h,r,a){
     ctx.save();
-    ctx.globalAlpha = a
+    ctx.globalAlpha = a/255.0;
     ctx.translate((x+w/2)*dw,(y+h/2)*dh);
     ctx.rotate(r * Math.PI / 180);
     ctx.drawImage(img, (-w/2)*dw, (-h/2)*dh, w*dw, h*dh);
     ctx.restore();
+}
+//------------------------------------------------------------------------------
+function drawText(text,x,y,size,r,g,b,a){
+    setFontSize(size);
+    ctx.fillStyle ='rgba('+r+','+g+','+b+','+a+')';
+    ctx.fillText(text,x*dw,y*dh);
 }
 //------------------------------------------------------------------------------
 function drawLine(x1,y1,x2,y2,r,g,b,a){

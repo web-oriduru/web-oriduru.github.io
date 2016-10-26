@@ -1,7 +1,8 @@
 class Paper {
-    constructor() {
+    constructor(back) {
         this.img = creatImage("fore01");
         this.next_img = creatImage("fore01");
+        this.back_img = creatImage(back);
         this.x1 = 0;
         this.y1 = 0;
         this.x2 = 0;
@@ -41,8 +42,8 @@ class Paper {
             this.y2 = 500;
             
             
-            //localStorage.setItem("image_png",canvas.toDataURL());
-            //location.href = "image-png.html"
+            localStorage.setItem("image_png",canvas.toDataURL());
+            location.href = "image-png.html"
             
         }
     }
@@ -62,6 +63,7 @@ class Paper {
     }
     
     draw(){
+        drawImage(this.back_img, 0, 0, 1080, 1920, 0, 255);
         drawImage(this.img, 0, 0, 1080, 1920, 0, 255);
     }
 }
