@@ -16,8 +16,10 @@ class Oriduru {
             
             var size_rate = 0.4;
             if(Math.sqrt(Math.pow(this.x-touch_x,2) + Math.pow(this.y-touch_y,2)) < this.size*size_rate){
-                this.exist = false;
-                console.log("delete");
+                this.x = touch_x;
+                this.y = touch_y;
+                //this.exist = false;
+                //console.log("delete");
                 touch_x=-9999;
                 touch_y=-9999;
             }
