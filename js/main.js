@@ -49,6 +49,7 @@ function load(){
     timer=new Date();
     width = 1080;
     height = 1920;
+    scroll = true;
 
     paper = new Paper("back01");
     for(var i=0;i<oridurus.length;i++){

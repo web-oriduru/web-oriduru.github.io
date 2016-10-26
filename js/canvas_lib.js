@@ -9,6 +9,7 @@ var dh;
 var touching = false;
 var touch_x=0;
 var touch_y=0;
+var scroll = true;
 var clicking = false;
 var timer;
 //------------------------------------------------------------------------------
@@ -98,6 +99,10 @@ function TouchStart(e){
         e.preventDefault();
     }else{
         
+    }
+    
+    if(!scroll){
+        e.preventDefault();
     }
 }
 //------------------------------------------------------------------------------
