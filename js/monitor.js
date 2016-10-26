@@ -1,6 +1,5 @@
 var oriduru_count
-var paper;
-var oridurus = new Array(80);
+var oridurus = new Array(100);
 //------------------------------------------------------------------------------
 function load(){
     /*
@@ -24,35 +23,15 @@ function load(){
            oriduru_count = 1;
     });
       */
-    
-    
-    
-    /*
-    var text1 = "「Webおりづる」で折り鶴をおりました　「";
-    var text2 = "ここにコメント";
-    var text3 = "」 web-oriduru.github.io";
-    location.href = "https://twitter.com/intent/tweet?text="+ encodeURIComponent(text1)+ encodeURIComponent(text2)+ encodeURIComponent(text3)+"&hashtags=web_oriduru";
-    */
-    
-    /*
-    var input_text = window.prompt("おりづるにコメントをつけることができます", "");
-    if(input_text != "" && input_text != null){
-        location.href = "https://twitter.com/intent/tweet?text="　+ "「Webおりづる」で折り鶴をおりました　「" + encodeURIComponent(input_text)　+ "」 web-oriduru.github.io" +"&hashtags=web_oriduru";
-    }else{
-        
-    }
-     */
-    
-    
+
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
     timer=new Date();
-    width = 1080;
-    height = 1920;
+    width = 1920;
+    height = 1080;
 
-    paper = new Paper("back01");
     for(var i=0;i<oridurus.length;i++){
-        oridurus[i] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-Math.floor(Math.random()*1000));
+        oridurus[i] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*width),-Math.floor(Math.random()*1000));
     }
     oridurus[0] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*0);
     oridurus[1] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*1);
@@ -66,24 +45,18 @@ function load(){
 //------------------------------------------------------------------------------
 function move(){
 
-    paper.move();
-    
-    
     for(var i=0;i<oridurus.length;i++){
-        //oridurus[i].move(oridurus);
+        oridurus[i].move(oridurus);
     }
     
 }
 //------------------------------------------------------------------------------
 function draw() {
     ctx.globalCompositeOperation="source-over";
-	drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
-    drawText("Now Loading...",200,1920/2,64,255,255,255,255);
-    
-    paper.draw();
+	drawRect(width/2,height/2,width,height,100,200,150,255);
     
     for(var i=0;i<oridurus.length;i++){
-        //oridurus[i].draw();
+        oridurus[i].draw();
     }
     
     
