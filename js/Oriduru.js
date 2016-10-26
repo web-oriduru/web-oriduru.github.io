@@ -71,7 +71,9 @@ class Oriduru {
     
     draw(){
         if(this.exist){
-            drawImage(this.img, this.x-this.size/2, this.y-this.size/2, this.size, this.size, this.rotate, 255);
+            ctx.globalCompositeOperation="lighter";
+            drawImage(this.img, this.x-this.size/2, this.y-this.size/2, this.size, this.size, this.rotate, 155);
+            ctx.globalCompositeOperation="source-over";
             //drawCircle(this.x,this.y,this.size*0.3/2,0,255,0,0.5);
         }
     }
