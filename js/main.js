@@ -1,6 +1,5 @@
 var oriduru_count
 var paper;
-var oridurus = new Array(80);
 //------------------------------------------------------------------------------
 function load(){
     /*
