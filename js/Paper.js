@@ -16,6 +16,7 @@ class Paper {
     
     loadImage(num){
         if(num == 1){
+            /*
             img[ 0] = creatImage("play/play_01_001");
             img[ 1] = creatImage("play/play_01_001");
             img[ 2] = creatImage("play/play_01_002");
@@ -29,6 +30,12 @@ class Paper {
             img[10] = creatImage("play/play_01_010");
             img[11] = creatImage("play/play_01_011");
             img[12] = creatImage("play/play_01_012");
+             */
+            img[ 0] = creatImage("play/play_01_001");
+            img[ 1] = creatImage("play/play_01_001");
+            img[ 2] = creatImage("play/play_01_004");
+            img[ 3] = creatImage("play/play_01_008");
+            img[ 4] = creatImage("play/play_01_012");
         }
         
         
@@ -49,6 +56,7 @@ class Paper {
         this.num++;
         this.touch_start = false;
         delete this.img;
+        /*
         this.setNext( 1,890,1100,850,1050);
         this.setNext( 2,this.x2,this.y2,770,1000);
         this.setNext( 3,this.x2,this.y2,700,930);
@@ -61,6 +69,11 @@ class Paper {
         this.setNext(11,this.x2,this.y2,250,480);
         this.setNext(12,this.x2,this.y2,180,410);
         this.setNext(13,this.x2,this.y2,180,410);
+         */
+        this.setNext(1,890,1100,700,930);
+        this.setNext(2,this.x2,this.y2,430,660);
+        this.setNext(3,this.x2,this.y2,180,410);
+        this.setNext(4,this.x2,this.y2,180,410);
     }
     
     move(){
@@ -78,5 +91,7 @@ class Paper {
     draw(){
         drawImage(this.back_img, 0, 0, 1080, 1920, 0, 255);
         if(img[this.img_num] != null) drawImage(img[this.img_num], 0, 0, 1080, 1920, 0, 255);
+        //drawCircle(this.x1,this.y1,100,0,255,0,0.5);
+        //drawCircle(this.x2,this.y2,100,0,255,0,0.5);
     }
 }
