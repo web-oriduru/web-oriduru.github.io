@@ -1,7 +1,7 @@
 class Paper {
     constructor(back) {
-        this.img = creatImage("fore01");
-        this.next_img = creatImage("fore01");
+        this.img = creatImage("play/play_01_001");
+        this.next_img = creatImage("play/play_01_001");
         this.back_img = creatImage(back);
         this.x1 = 0;
         this.y1 = 0;
@@ -11,54 +11,43 @@ class Paper {
         this.touch_start = false;
         this.fold();
     }
+    setNext(num,next_img,x1,y1,x2,y2){
+        if(this.num == num){
+            this.img = this.next_img;
+            this.next_img = creatImage(next_img);
+            this.x1 = x1;
+            this.y1 = y1;
+            this.x2 = x2;
+            this.y2 = y2;
+        }
+    }
     
     fold(){
-        touching=false;
         this.touch_start = false;
         this.num++;
         delete this.img;
-        if(this.num==1){
-            this.img = this.next_img;
-            this.next_img = creatImage("fore02");
-            this.x1 = 1000;
-            this.y1 = 1200;
-            this.x2 = 100;
-            this.y2 = 300;
-        }
-        else if(this.num==2){
-            this.img = this.next_img;
-            this.next_img = creatImage("fore03");
-            this.x1 = 100;
-            this.y1 = 1200;
-            this.x2 = 1000;
-            this.y2 = 300;
-        }
-        else if(this.num==3){
-            this.img = this.next_img;
-            this.next_img = creatImage("fore04");
-            this.x1 = 800;
-            this.y1 = 800;
-            this.x2 = 500;
-            this.y2 = 500;
-            
-            
-            localStorage.setItem("image_png",canvas.toDataURL());
-            location.href = "image-png.html"
-            
-        }
+        this.setNext( 1,"play/play_01_002",890,1100,850,1050);
+        this.setNext( 2,"play/play_01_003",this.x2,this.y2,770,1000);
+        this.setNext( 3,"play/play_01_004",this.x2,this.y2,700,930);
+        this.setNext( 4,"play/play_01_005",this.x2,this.y2,630,850);
+        this.setNext( 5,"play/play_01_006",this.x2,this.y2,600,820);
+        this.setNext( 6,"play/play_01_007",this.x2,this.y2,490,720);
+        this.setNext( 7,"play/play_01_008",this.x2,this.y2,430,660);
+        this.setNext( 8,"play/play_01_009",this.x2,this.y2,380,600);
+        this.setNext( 9,"play/play_01_010",this.x2,this.y2,310,570);
+        this.setNext(10,"play/play_01_011",this.x2,this.y2,250,480);
+        this.setNext(11,"play/play_01_012",this.x2,this.y2,180,400);
     }
     
     move(){
         if(touching){
-            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 300){
+            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 100){
                 this.touch_start = true;
                 console.log("touch!!!!!");
             }
-            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 300){
+            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 100){
                 this.fold();
             }
-        }else{
-            this.touch_start = false;
         }
     }
     

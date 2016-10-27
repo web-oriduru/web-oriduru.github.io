@@ -43,6 +43,11 @@ function load(){
     }
      */
     
+    /*
+    localStorage.setItem("image_png",canvas.toDataURL());
+    location.href = "image-png.html";
+     */
+    
     
 	canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
@@ -51,16 +56,7 @@ function load(){
     height = 1920;
     scroll = true;
 
-    paper = new Paper("back01");
-    for(var i=0;i<oridurus.length;i++){
-        oridurus[i] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-Math.floor(Math.random()*1000));
-    }
-    oridurus[0] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*0);
-    oridurus[1] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*1);
-    oridurus[2] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*2);
-    oridurus[3] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*3);
-    oridurus[4] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*4);
-    oridurus[5] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*5);
+    paper = new Paper("play/back01");
     
 	loop();
 }
@@ -69,10 +65,7 @@ function move(){
 
     paper.move();
     
-    
-    for(var i=0;i<oridurus.length;i++){
-        //oridurus[i].move(oridurus);
-    }
+
     
 }
 //------------------------------------------------------------------------------
@@ -82,11 +75,7 @@ function draw() {
     drawText("Now Loading...",200,1920/2,64,255,255,255,255);
     
     paper.draw();
-    
-    for(var i=0;i<oridurus.length;i++){
-        //oridurus[i].draw();
-    }
-    
+
     
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';
