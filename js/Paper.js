@@ -1,7 +1,8 @@
 class Paper {
     constructor(back) {
         this.img = creatImage("play/play_01_001");
-        this.next_img = creatImage("play/play_01_001");
+        this.next1_img = creatImage("play/play_01_001");
+        this.next2_img = creatImage("play/play_01_002");
         this.back_img = creatImage(back);
         this.x1 = 0;
         this.y1 = 0;
@@ -13,8 +14,9 @@ class Paper {
     }
     setNext(num,next_img,x1,y1,x2,y2){
         if(this.num == num){
-            this.img = this.next_img;
-            this.next_img = creatImage(next_img);
+            this.img = this.next1_img;
+            this.next1_img = this.next2_img;
+            this.next2_img = creatImage(next_img);
             this.x1 = x1;
             this.y1 = y1;
             this.x2 = x2;
@@ -26,17 +28,16 @@ class Paper {
         this.touch_start = false;
         this.num++;
         delete this.img;
-        this.setNext( 1,"play/play_01_002",890,1100,850,1050);
-        this.setNext( 2,"play/play_01_003",this.x2,this.y2,770,1000);
-        this.setNext( 3,"play/play_01_004",this.x2,this.y2,700,930);
-        this.setNext( 4,"play/play_01_005",this.x2,this.y2,630,850);
-        this.setNext( 5,"play/play_01_006",this.x2,this.y2,600,820);
-        this.setNext( 6,"play/play_01_007",this.x2,this.y2,490,720);
-        this.setNext( 7,"play/play_01_008",this.x2,this.y2,430,660);
-        this.setNext( 8,"play/play_01_009",this.x2,this.y2,380,600);
-        this.setNext( 9,"play/play_01_010",this.x2,this.y2,310,570);
-        this.setNext(10,"play/play_01_011",this.x2,this.y2,250,480);
-        this.setNext(11,"play/play_01_012",this.x2,this.y2,180,400);
+        this.setNext( 1,"play/play_01_003",890,1100,850,1050);
+        this.setNext( 2,"play/play_01_004",this.x2,this.y2,770,1000);
+        this.setNext( 3,"play/play_01_005",this.x2,this.y2,700,930);
+        this.setNext( 4,"play/play_01_006",this.x2,this.y2,630,850);
+        this.setNext( 5,"play/play_01_007",this.x2,this.y2,600,820);
+        this.setNext( 6,"play/play_01_008",this.x2,this.y2,490,720);
+        this.setNext( 7,"play/play_01_009",this.x2,this.y2,430,660);
+        this.setNext( 8,"play/play_01_010",this.x2,this.y2,380,600);
+        this.setNext( 9,"play/play_01_011",this.x2,this.y2,310,570);
+        this.setNext(10,"play/play_01_012",this.x2,this.y2,250,480);
     }
     
     move(){
