@@ -46,10 +46,10 @@ class Paper {
     }
     
     fold(){
+        this.num++;
         this.touch_start = false;
         delete this.img;
-        this.setNext( 0,890,1100,890,1100);
-        this.setNext( 1,this.x2,this.y2,850,1050);
+        this.setNext( 1,890,1100,850,1050);
         this.setNext( 2,this.x2,this.y2,770,1000);
         this.setNext( 3,this.x2,this.y2,700,930);
         this.setNext( 4,this.x2,this.y2,630,850);
@@ -57,10 +57,10 @@ class Paper {
         this.setNext( 6,this.x2,this.y2,490,720);
         this.setNext( 7,this.x2,this.y2,430,660);
         this.setNext( 8,this.x2,this.y2,380,600);
-        this.setNext( 9,this.x2,this.y2,310,570);
-        this.setNext(10,this.x2,this.y2,250,480);
-        this.setNext(11,this.x2,this.y2,180,410);
-        this.num++;
+        this.setNext(10,this.x2,this.y2,310,570);
+        this.setNext(11,this.x2,this.y2,250,480);
+        this.setNext(12,this.x2,this.y2,180,410);
+        this.setNext(13,this.x2,this.y2,180,410);
     }
     
     move(){
