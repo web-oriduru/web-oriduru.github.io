@@ -47,9 +47,9 @@ class Paper {
     
     fold(){
         this.touch_start = false;
-        this.num++;
         delete this.img;
-        this.setNext( 1,890,1100,850,1050);
+        this.setNext( 0,890,1100,890,1100);
+        this.setNext( 1,this.x2,this.y2,850,1050);
         this.setNext( 2,this.x2,this.y2,770,1000);
         this.setNext( 3,this.x2,this.y2,700,930);
         this.setNext( 4,this.x2,this.y2,630,850);
@@ -59,17 +59,17 @@ class Paper {
         this.setNext( 8,this.x2,this.y2,380,600);
         this.setNext( 9,this.x2,this.y2,310,570);
         this.setNext(10,this.x2,this.y2,250,480);
-        this.setNext(11,this.x2,this.y2,260,500);
-        this.setNext(12,this.x2,this.y2,180,410);
+        this.setNext(11,this.x2,this.y2,180,410);
+        this.num++;
     }
     
     move(){
         if(touching){
-            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 100){
+            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 50){
                 this.touch_start = true;
                 console.log("touch!!!!!");
             }
-            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 100){
+            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 50){
                 this.fold();
             }
         }
