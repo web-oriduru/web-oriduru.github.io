@@ -55,7 +55,7 @@ function move(){
 //------------------------------------------------------------------------------
 function draw() {
     ctx.globalCompositeOperation="source-over";
-	drawRect(width/2,height/2,width,height,0,0,0,255);
+	drawRect(width/2,height/2,width,height,255,255,255,255);
     
     for(var i=0;i<oridurus.length;i++){
         oridurus[i].draw();
