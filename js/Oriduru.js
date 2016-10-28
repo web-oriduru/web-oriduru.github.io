@@ -6,7 +6,7 @@ class Oriduru {
         this.vx = 0;//Math.floor(Math.random()*3)-1;
         this.vy = 10;
         this.size = 250;
-        this.rotate =Math.floor(Math.random()*360);
+        this.rotate = 0;//Math.floor(Math.random()*360);
         this.exist = true;
     }
     
