@@ -88,12 +88,14 @@ class Paper {
         this.setNext(13,this.x2,this.y2,620,530,true,-1);
         this.setNext(14,this.x2,this.y2,410,720,false,-1);
         if(this.num == 15){
-            this.blink_arrow = new Blink("play/arrow01",400,700,270,320,-120,2000);
-            this.blink_touch = new Blink("play/hand01",410+20,460+200,280,440,0,2000);
+            touching = false;
+            delete this.blink_arrow;
+            this.blink_arrow = null;
+            this.blink_touch = new Blink("play/hand01",410+20,720+200,280,440,0,2000);
         }
-        this.setNext(15,410,460,410,960,false,-1);
+        this.setNext(15,410,720,410,720,false,-1);
         
-        this.setNext(16,this.x2,this.y2,410,960,true,-1);
+        this.setNext(16,this.x2,this.y2,410,720,true,-1);
         
     }
     
