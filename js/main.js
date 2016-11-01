@@ -80,7 +80,6 @@ function draw() {
     ctx.fillStyle ='rgb(255,255,255)';
     ctx.fillText("touch_x : "+touch_x,50,100+30*0);
     ctx.fillText("touch_y : "+touch_y,50,100+30*1);
-	var t=new Date();
-	ctx.fillText("timer   : "+t.getTime(),50,100+30*2);
+	ctx.fillText("timer   : "+timer,50,100+30*2);
     ctx.fillText("count   : "+oriduru_count,50,100+30*4);
 }

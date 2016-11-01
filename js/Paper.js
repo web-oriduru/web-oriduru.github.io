@@ -10,6 +10,8 @@ class Paper {
         this.y2 = 0;
         this.num = 0;
         this.touch_start = false;
+        this.blink_arrow = null;
+        this.blink_touch = null;
         this.loadImage(1);
         this.fold();
     }
@@ -21,12 +23,14 @@ class Paper {
             img[ 2] = creatImage("play/play_01_002");
             img[ 3] = creatImage("play/play_01_003");
             img[ 4] = creatImage("play/play_01_004");
+            this.blink_arrow = new Blink("play/arrow01",width/2,height/2,width,height,2000);
+            this.blink_touch = new Blink("play/hand01",580,1100,width,height,2000);
         }
         
         
     }
     
-    setNext(num,x1,y1,x2,y2){
+    setNext(num,x1,y1,x2,y2,delete_touch){
         if(this.num == num){
             this.img_num++;
             this.x1 = x1;
@@ -34,6 +38,10 @@ class Paper {
             this.x2 = x2;
             this.y2 = y2;
             console.log(this.img_num);
+            if(delete_touch && this.blink_touch != null){
+                delete this.blink_touch;
+                this.blink_touch = null;
+            }
         }
     }
     
@@ -41,10 +49,10 @@ class Paper {
         this.num++;
         this.touch_start = false;
         delete this.img;
-        this.setNext(1,890,1100,700,930);
-        this.setNext(2,this.x2,this.y2,430,660);
-        this.setNext(3,this.x2,this.y2,180,410);
-        this.setNext(4,this.x2,this.y2,180,410);
+        this.setNext(1,890,1100,700,930,false);
+        this.setNext(2,this.x2,this.y2,430,660,true);
+        this.setNext(3,this.x2,this.y2,180,410,false);
+        this.setNext(4,this.x2,this.y2,180,410,false);
     }
     
     move(){
@@ -64,5 +72,11 @@ class Paper {
         if(img[this.img_num] != null) drawImage(img[this.img_num], 0, 0, 1080, 1920, 0, 255);
         //drawCircle(this.x1,this.y1,100,0,255,0,0.5);
         //drawCircle(this.x2,this.y2,100,0,255,0,0.5);
+        if(this.blink_arrow != null){
+            this.blink_arrow.draw();
+        }
+        if(this.blink_touch != null){
+            this.blink_touch.draw();
+        }
     }
 }

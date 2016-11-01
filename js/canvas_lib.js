@@ -15,17 +15,19 @@ var timer;
 //------------------------------------------------------------------------------
 function loop() {
 	sizing();
-	var timer=0+new Date();
+    var t = new Date();
+    timer = t.getTime();
+	var loop_timer = 0+new Date();
 	move();
 	draw();
-	timer=16-(new Date()-timer);
-	if(timer<0) timer=0;
-	setTimeout("loop()", timer);
+	loop_timer=16-(new Date()-loop_timer);
+	if(loop_timer<0) loop_timer=0;
+	setTimeout("loop()", loop_timer);
 }
 //------------------------------------------------------------------------------
 function creatImage(file_name){
     var img = new Image();
-    img.src = "resources/" + file_name + ".png?" + timer.getTime();
+    img.src = "resources/" + file_name + ".png?" + timer;
     return img;
 }
 //------------------------------------------------------------------------------
