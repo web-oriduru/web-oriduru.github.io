@@ -1,5 +1,6 @@
 var state;
 var oriduru_count
+var fade;
 var opening;
 var select;
 var paper;
@@ -60,6 +61,8 @@ function load(){
 
     state = "opening";
     
+    fade = new Fade("loading");
+    
     opening = new Opening();
     select = new Select();
     paper = new Paper();
@@ -71,18 +74,27 @@ function move(){
 
     if(state == "opening"){
         if(opening.move()){
-            state = "select";
+            fade.next = "select";
+            fade.start();
         }
     }
     else if(state == "select"){
         if(select.move()){
-            state = "paper";
+            fade.next = "paper";
             paper.setBackImage(select.color_num);
+            fade.start();
         }
     }
     else if(state == "paper"){
         paper.move();
     }
+    
+    
+    if(fade.changeToNext()){
+        state = fade.next;
+    }
+    
+    
     
 
     
@@ -104,6 +116,8 @@ function draw() {
         paper.draw();
     }
 
+    fade.draw();
+    
     /*
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';
