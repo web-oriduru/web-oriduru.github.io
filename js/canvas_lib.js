@@ -97,7 +97,7 @@ function TouchStart(e){
     touch_y = touch_list[0].pageY/dh;
     touching = true;
     
-    if(touch_x>50 && touch_x<1080-50){
+    if(touch_x>100 && touch_x<1080-100){
         e.preventDefault();
     }else{
         

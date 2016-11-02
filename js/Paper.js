@@ -1,6 +1,7 @@
-var img = new Array(8);
+img = new Array(8);
 
 class Paper {
+
     constructor() {
         this.img_num = 0;
         this.back_img;
