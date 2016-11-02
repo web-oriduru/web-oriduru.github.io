@@ -41,7 +41,7 @@ function drawImage(img,x,y,w,h,r,a){
     ctx.globalAlpha = a/255.0;
     ctx.translate((x+w/2)*dw,(y+h/2)*dh);
     ctx.rotate(r * Math.PI / 180);
-    ctx.drawImage(img, (-w/2)*dw, (-h/2)*dh, w*dw, h*dh);
+    ctx.drawImage(img, -w*dw, -h*dw, w*dw, h*dh);
     ctx.restore();
 }
 //------------------------------------------------------------------------------

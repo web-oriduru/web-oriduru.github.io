@@ -1,4 +1,7 @@
+var state;
 var oriduru_count
+var opening;
+var select;
 var paper;
 //------------------------------------------------------------------------------
 function load(){
@@ -55,14 +58,31 @@ function load(){
     height = 1920;
     scroll = true;
 
-    paper = new Paper("play/back01");
+    state = "opening";
+    
+    opening = new Opening();
+    select = new Select();
+    paper = new Paper();
     
 	loop();
 }
 //------------------------------------------------------------------------------
 function move(){
 
-    paper.move();
+    if(state == "opening"){
+        if(opening.move()){
+            state = "select";
+        }
+    }
+    else if(state == "select"){
+        if(select.move()){
+            state = "paper";
+            paper.setBackImage(select.color_num);
+        }
+    }
+    else if(state == "paper"){
+        paper.move();
+    }
     
 
     
@@ -73,13 +93,23 @@ function draw() {
 	drawRect(1080/2,1920/2,1080,1920,0,0,0,255);
     drawText("Now Loading...",200,1920/2,64,255,255,255,255);
     
-    paper.draw();
-
     
+    if(state == "opening"){
+        opening.draw();
+    }
+    else if(state == "select"){
+        select.draw();
+    }
+    else if(state == "paper"){
+        paper.draw();
+    }
+
+    /*
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';
     ctx.fillText("touch_x : "+touch_x,50,100+30*0);
     ctx.fillText("touch_y : "+touch_y,50,100+30*1);
 	ctx.fillText("timer   : "+timer,50,100+30*2);
     ctx.fillText("count   : "+oriduru_count,50,100+30*4);
+     */
 }

@@ -1,9 +1,9 @@
 var img = new Array(8);
 
 class Paper {
-    constructor(back) {
+    constructor() {
         this.img_num = 0;
-        this.back_img = creatImage(back);
+        this.back_img;
         this.x1 = 0;
         this.y1 = 0;
         this.x2 = 0;
@@ -99,6 +99,22 @@ class Paper {
         
     }
     
+    setBackImage(num){
+        if(num== 0) this.back_img = creatImage("play/paper_00");
+        if(num== 1) this.back_img = creatImage("play/paper_01");
+        if(num== 2) this.back_img = creatImage("play/paper_02");
+        if(num== 3) this.back_img = creatImage("play/paper_03");
+        if(num== 4) this.back_img = creatImage("play/paper_04");
+        if(num== 5) this.back_img = creatImage("play/paper_05");
+        if(num== 6) this.back_img = creatImage("play/paper_06");
+        if(num== 7) this.back_img = creatImage("play/paper_07");
+        if(num== 8) this.back_img = creatImage("play/paper_08");
+        if(num== 9) this.back_img = creatImage("play/paper_09");
+        if(num==10) this.back_img = creatImage("play/paper_10");
+        if(num==11) this.back_img = creatImage("play/paper_11");
+    }
+    
+    
     setNext(num,x1,y1,x2,y2,delete_touch,load_image){
         if(this.num == num){
             this.img_num++;
@@ -132,8 +148,8 @@ class Paper {
     }
     
     draw(){
-        drawImage(this.back_img, 0, 0, 1080, 1920, 0, 255);
-        if(img[this.img_num] != null) drawImage(img[this.img_num], 0, 0, 1080, 1920, 0, 255);
+        drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
+        if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
         //drawCircle(this.x1,this.y1,100,0,255,0,0.5);
         //drawCircle(this.x2,this.y2,100,0,255,0,0.5);
         
