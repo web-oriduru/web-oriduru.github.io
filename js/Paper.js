@@ -1,4 +1,6 @@
-img = new Array(8);
+var img_max = 5;
+var load_img = 0;
+var img = new Array(img_max);
 
 class Paper {
 
@@ -18,15 +20,19 @@ class Paper {
     
     loadImage(num){
         this.img_num = 0;
+        
         if(num == 1){
+            load_img = 0;
             img[0] = creatImage("play/play_01_001");
             img[1] = creatImage("play/play_01_002");
             img[2] = creatImage("play/play_01_003");
             img[3] = creatImage("play/play_02_001");
+            img[4] = creatImage("play/play_02_001");
             this.blink_arrow = new Blink("play/arrow01",540,700,270,320,0,2000);
             this.blink_touch = new Blink("play/hand01",890+20,1100+200,280,440,0,2000);
         }
         else if(num == 2){
+            load_img = 1;
             img[0] = img[3];
             img[1] = creatImage("play/play_02_002");
             img[2] = creatImage("play/play_02_003");
@@ -36,6 +42,7 @@ class Paper {
             this.blink_touch = new Blink("play/hand01",180+20,1110+200,280,440,0,2000);
         }
         else if(num == 3){
+            load_img = 1;
             img[0] = img[4];
             img[1] = creatImage("play/play_03_002");
             img[2] = creatImage("play/play_03_003");
@@ -45,6 +52,7 @@ class Paper {
             this.blink_touch = new Blink("play/hand01",890+20,400+200,280,440,0,2000);
         }
         else if(num == 4){
+            load_img = 1;
             img[0] = img[4];
             img[1] = creatImage("play/play_04_002");
             img[2] = creatImage("play/play_04_003");
@@ -55,6 +63,7 @@ class Paper {
         }
         
         else if(num == 4){
+            load_img = 1;
             img[0] = img[4];
             img[1] = creatImage("play/play_04_002");
             img[2] = creatImage("play/play_04_003");
@@ -64,6 +73,9 @@ class Paper {
             this.blink_touch = new Blink("play/hand01",900+20,460+200,280,440,0,2000);
         }
         
+        for(var i=0; i<img_max; i++){
+            img[i].onload = function(){ load_img++; console.log("load!!"); }
+        }
         
     }
     
@@ -143,7 +155,9 @@ class Paper {
                 console.log("touch!!!!!");
             }
             if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 100){
-                this.fold();
+                if(load_img == img_max){
+                    this.fold();
+                }
             }
         }
     }
