@@ -1,5 +1,5 @@
 var oriduru_count
-var oridurus = new Array(100);
+var oridurus = new Array(120);
 //------------------------------------------------------------------------------
 function load(){
     /*
@@ -31,14 +31,19 @@ function load(){
     height = 1080;
 
     for(var i=0;i<oridurus.length;i++){
-        oridurus[i] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*width),-Math.floor(Math.random()*1000));
+        oridurus[i] = new Oriduru("oriduru0" ,width/24 + width/12* 0,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru1" ,width/24 + width/12* 1,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru2" ,width/24 + width/12* 2,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru3" ,width/24 + width/12* 3,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru4" ,width/24 + width/12* 4,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru5" ,width/24 + width/12* 5,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru6" ,width/24 + width/12* 6,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru7" ,width/24 + width/12* 7,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru8" ,width/24 + width/12* 8,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru9" ,width/24 + width/12* 9,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru10",width/24 + width/12*10,-Math.floor(Math.random()*500)); i++;
+        oridurus[i] = new Oriduru("oriduru11",width/24 + width/12*11,-Math.floor(Math.random()*500));
     }
-    oridurus[0] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*0);
-    oridurus[1] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*1);
-    oridurus[2] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*2);
-    oridurus[3] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*3);
-    oridurus[4] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*4);
-    oridurus[5] = new Oriduru("oriduru"+Math.floor(Math.random()*5),Math.floor(Math.random()*1080),-3000*5);
 
     scroll = false;
     
