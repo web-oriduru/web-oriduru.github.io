@@ -34,8 +34,9 @@ class Oriduru {
                     }
                     if(this.y<oridurus[i].y){
                         var j = 0;
-                        for(j=0;j<5;j++){
-                            this.vx = Math.floor(Math.random()*6)-3;
+                        var j_max = 3;
+                        for(j=0;j<j_max;j++){
+                            this.vx = Math.floor(Math.random()*2)-1;
                             this.vy = Math.floor(Math.random()*3)+1;
                             if(!(Math.sqrt(Math.pow((this.x+this.vx)-oridurus[i].x,2) + Math.pow((this.y+this.vy)-oridurus[i].y,2)) < this.size*size_rate)){
                                 break;
@@ -44,8 +45,8 @@ class Oriduru {
                             if(!(Math.sqrt(Math.pow((this.x+this.vx)-oridurus[i].x,2) + Math.pow((this.y+this.vy)-oridurus[i].y,2)) < this.size*size_rate)){
                                 break;
                             }
-                            }
-                        if(j==5){
+                        }
+                        if(j==j_max){
                             this.vy=0;
                             this.vx=0;
                             break;
