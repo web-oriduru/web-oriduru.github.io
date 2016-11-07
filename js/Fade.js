@@ -30,7 +30,7 @@ class Fade{
             }
             
             this.count--;
-            if(this.count>this.fade_time) this.count = 0;
+            if(this.count > this.fade_time) this.count = 0;
         }
     }
 }
