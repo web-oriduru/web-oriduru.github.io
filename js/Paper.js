@@ -12,6 +12,7 @@ class Paper {
         this.x2 = 0;
         this.y2 = 0;
         this.num = 0;
+        this.hit_r = 100;
         this.touch_start = false;
         this.blink_arrow = null;
         this.blink_touch = null;
@@ -57,21 +58,66 @@ class Paper {
             img[1] = creatImage("play/play_04_002");
             img[2] = creatImage("play/play_04_003");
             img[3] = creatImage("play/play_04_004");
-            img[4] = creatImage("play/play_04_005");
+            img[4] = creatImage("play/play_05_001");
             this.blink_arrow = new Blink("play/arrow01",590,560,270,320,-90,2000);
             this.blink_touch = new Blink("play/hand01",900+20,460+200,280,440,0,2000);
         }
         
-        else if(num == 4){
+        else if(num == 5){
             load_img = 1;
             img[0] = img[4];
-            img[1] = creatImage("play/play_04_002");
-            img[2] = creatImage("play/play_04_003");
-            img[3] = creatImage("play/play_04_004");
-            img[4] = creatImage("play/play_04_005");
-            this.blink_arrow = new Blink("play/arrow01",590,560,270,320,-90,2000);
-            this.blink_touch = new Blink("play/hand01",900+20,460+200,280,440,0,2000);
+            img[1] = creatImage("play/play_05_001");
+            img[2] = creatImage("play/play_05_001");
+            img[3] = creatImage("play/play_05_001");
+            img[4] = creatImage("play/play_06_001");
+            this.blink_arrow = null;
+            this.blink_touch = new Blink("play/hand01",410+20,720+200,280,440,0,2000);
         }
+        
+        else if(num == 6){
+            load_img = 1;
+            img[0] = img[4];
+            img[1] = creatImage("play/play_06_002");
+            img[2] = creatImage("play/play_06_003");
+            img[3] = creatImage("play/play_06_004");
+            img[4] = creatImage("play/play_07_001");
+            this.blink_arrow = new Blink("play/arrow02",500,560,270,320,90,2000);
+            this.blink_touch = new Blink("play/hand01",160+20,460+200,280,440,0,2000);
+        }
+        
+        else if(num == 7){
+            load_img = 1;
+            img[0] = img[4];
+            img[1] = creatImage("play/play_07_002");
+            img[2] = creatImage("play/play_08_001");
+            img[3] = creatImage("play/play_08_001");
+            img[4] = creatImage("play/play_08_001");
+            this.blink_arrow = new Blink("play/arrow02",590,560,270,320,0,2000);
+            this.blink_touch = new Blink("play/hand01",410+20,700+200,280,440,0,2000);
+        }
+        
+        else if(num == 8){
+            load_img = 1;
+            img[0] = img[4];
+            img[1] = creatImage("play/play_08_002");
+            img[2] = creatImage("play/play_09_001");
+            img[3] = creatImage("play/play_09_001");
+            img[4] = creatImage("play/play_09_001");
+            this.blink_arrow = null;
+            this.blink_touch = new Blink("play/hand01",660+20,690+200,280,440,0,2000);
+        }
+        
+        else if(num == 9){
+            load_img = 1;
+            img[0] = img[4];
+            img[1] = creatImage("play/play_09_002");
+            img[2] = creatImage("play/play_09_001");
+            img[3] = creatImage("play/play_09_001");
+            img[4] = creatImage("play/play_09_001");
+            this.blink_arrow = new Blink("play/arrow01",790,560,270,320,0,2000);
+            this.blink_touch = new Blink("play/hand01",910+20,710+200,280,440,0,2000);
+        }
+        
         
         for(var i=0; i<img_max; i++){
             img[i].onload = function(){ load_img++; console.log("load!!"); }
@@ -107,8 +153,44 @@ class Paper {
             this.blink_touch = new Blink("play/hand01",410+20,720+200,280,440,0,2000);
         }
         this.setNext(15,410,720,410,720,false,-1);
-        
         this.setNext(16,this.x2,this.y2,410,720,true,-1);
+        
+        if(this.num == 16) this.num++;
+        this.setNext(17,410,720,410,720,false,5);
+        
+        this.setNext(18,160,460,340,510,false,6);
+        this.setNext(19,this.x2,this.y2,520,560,true,-1);
+        this.setNext(20,this.x2,this.y2,660,690,false,-1);
+        if(this.num == 21){
+            touching = false;
+            delete this.blink_arrow;
+            this.blink_arrow = null;
+            this.blink_touch = new Blink("play/hand01",660+20,690+200,280,440,0,2000);
+        }
+        this.setNext(21,this.x2,this.y2,660,690,false,-1);
+        
+        if(this.num == 22) this.hit_r = 80;
+        this.setNext(22,410,700,660,580,true,7);
+        if(this.num == 23){
+            touching = false;
+            delete this.blink_arrow;
+            this.blink_arrow = new Blink("play/arrow01",790,560,270,320,0,2000);
+            this.blink_touch = new Blink("play/hand01",910+20,710+200,280,440,0,2000);
+        }
+        this.setNext(23,920,700,660,580,false,-1);
+
+        this.setNext(24,660,710,660,710,false,8);
+        if(this.num == 25){
+            touching = false;
+            delete this.blink_arrow;
+            this.blink_arrow = new Blink("play/arrow02",590,560,270,320,0,2000);
+            this.blink_touch = new Blink("play/hand01",410+20,700+200,280,440,0,2000);
+        }
+        this.setNext(25,410,700,660,580,false,-1);
+        
+        this.setNext(26,920,700,660,580,false,9);
+        if(this.num == 27) delete this.blink_arrow;
+        this.setNext(27,920,700,660,580,true,-1);
         
     }
     
@@ -150,11 +232,11 @@ class Paper {
     
     move(){
         if(touching){
-            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < 100){
+            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < this.hit_r){
                 this.touch_start = true;
                 console.log("touch!!!!!");
             }
-            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < 100){
+            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < this.hit_r){
                 if(load_img == img_max){
                     this.fold();
                 }
@@ -165,8 +247,8 @@ class Paper {
     draw(){
         drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
         if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
-        //drawCircle(this.x1,this.y1,100,0,255,0,0.5);
-        //drawCircle(this.x2,this.y2,100,0,255,0,0.5);
+        //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
+        //drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
         
         if(this.blink_arrow != null){
             this.blink_arrow.draw();
