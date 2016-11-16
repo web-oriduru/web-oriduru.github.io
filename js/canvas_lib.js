@@ -12,6 +12,7 @@ var touch_y=0;
 var scroll = true;
 var clicking = false;
 var timer;
+var audio_load = false;
 //------------------------------------------------------------------------------
 function loop() {
 	sizing();
@@ -107,8 +108,11 @@ function TouchStart(e){
         e.preventDefault();
     }
     
-    document.getElementById("audioBGM").currentTime = 0;
-    document.getElementById("audioBGM").play();
+    if(audio_load){
+        document.getElementById("audioBGM").load();
+        document.getElementById("audioBGM").currentTime = 0;
+        audio_load = true;
+    }
 }
 //------------------------------------------------------------------------------
 function TouchMove(e){
