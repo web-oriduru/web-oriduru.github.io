@@ -76,8 +76,8 @@ function move(){
         if(opening.move()){
             fade.next = "select";
             fade.start();
-            document.getElementById("audioBGM").currentTime = 0;
-            document.getElementById("audioBGM").play();
+            //document.getElementById("audioBGM").currentTime = 0;
+            //document.getElementById("audioBGM").play();
         }
     }
     else if(state == "select"){

@@ -106,6 +106,9 @@ function TouchStart(e){
     if(!scroll){
         e.preventDefault();
     }
+    
+    document.getElementById("audioBGM").currentTime = 0;
+    document.getElementById("audioBGM").play();
 }
 //------------------------------------------------------------------------------
 function TouchMove(e){
