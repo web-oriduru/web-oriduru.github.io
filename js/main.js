@@ -67,6 +67,8 @@ function load(){
     select = new Select();
     paper = new Paper();
     
+    document.getElementById("audioBGM").play();
+    
 	loop();
 }
 //------------------------------------------------------------------------------
