@@ -108,7 +108,7 @@ function TouchStart(e){
         e.preventDefault();
     }
     
-    if(audio_load){
+    if(!audio_load){
         document.getElementById("audioBGM").load();
         document.getElementById("audioBGM").currentTime = 0;
         audio_load = true;
