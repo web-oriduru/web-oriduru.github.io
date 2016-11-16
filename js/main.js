@@ -67,10 +67,6 @@ function load(){
     select = new Select();
     paper = new Paper();
     
-    document.getElementById("audioBGM").autoplay = true;
-    document.getElementById("audioBGM").currentTime = 0;
-    document.getElementById("audioBGM").play();
-    
 	loop();
 }
 //------------------------------------------------------------------------------
@@ -80,6 +76,8 @@ function move(){
         if(opening.move()){
             fade.next = "select";
             fade.start();
+            document.getElementById("audioBGM").currentTime = 0;
+            document.getElementById("audioBGM").play();
         }
     }
     else if(state == "select"){
