@@ -219,24 +219,32 @@ class Paper {
         this.setNext(26,920,700,660,580,false,9);
         if(this.num == 27) delete this.blink_arrow;
         
-        if(this.num == 28) this.setBlink(450,480,1,0.8,220,570,450);
-        this.setNext(28,570,450,570,700,false,10);
-        if(this.num == 29) delete this.blink_arrow;
-        this.setNext(29,this.x2,this.y2,570,450,true,-1);
-        this.setNext(30,570,570,340,680,false,-1);
-        this.setNext(31,570,570,810,690,false,-1);
-        this.setNext(32,580,960,570,780,false,-1);
-        this.setNext(33,this.x2,this.y2,580,360,false,-1);
-        this.setNext(34,580,800,580,800,false,-1);
+        if(this.num == 27) this.setBlink(400,480,1,0.8,220,570,450);
+        this.setNext(27,570,450,570,700,false,10);
+        if(this.num == 28) this.setBlink(700,480,1,0.8,40,570,700);
+        this.setNext(28,this.x2,this.y2,570,450,false,-1);
+        if(this.num == 29) this.setBlink(400,480,1,0.8,-90,570,570);
+        this.setNext(29,570,570,340,680,false,-1);
+        if(this.num == 30) this.setBlink(800,480,2,0.8,90,570,570);
+        this.setNext(30,570,570,810,690,false,-1);
+        if(this.num == 31) this.setBlink(700,660,1,1.0,40,580,960);
+        this.setNext(31,580,960,570,780,false,-1);
+        this.setNext(32,this.x2,this.y2,580,360,true,-1);
+        if(this.num == 33) this.setBlink(-1,-1,1,1.0,0,580,800);
+        this.setNext(33,580,800,580,800,false,-1);
         
-        this.setNext(38,580,800,580,800,false,11);
+        this.setNext(34,580,800,580,800,false,11);
         
-        this.setNext(39,570,810,350,880,false,12);
-        this.setNext(40,570,810,810,890,true,-1);
-        this.setNext(41,580,1200,570,1050,false,-1);
-        this.setNext(42,this.x2,this.y2,580,350,false,-1);
-        this.setNext(43,580,800,580,800,false,-1);
-        this.setNext(44,580,800,580,800,false,-1);
+        if(this.num == 35) this.setBlink(400,750,1,0.8,-90,570,810);
+        this.setNext(35,570,810,350,880,false,12);
+        if(this.num == 36) this.setBlink(800,750,2,0.8,90,570,810);
+        this.setNext(36,570,810,810,890,false,-1);
+        if(this.num == 37) this.setBlink(700,800,1,1.0,40,580,1200);
+        this.setNext(37,580,1200,570,1050,false,-1);
+        this.setNext(38,this.x2,this.y2,580,350,true,-1);
+        if(this.num == 39) this.setBlink(-1,-1,1,1.0,0,580,800);
+        this.setNext(39,580,800,580,800,false,-1);
+        this.setNext(40,580,800,580,800,false,-1);
     }
     
     setBackImage(num){
@@ -301,8 +309,8 @@ class Paper {
     draw(){
         drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
         if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
-        drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
-        drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
+        //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
+        //drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
         
         if(this.blink_arrow != null){
             this.blink_arrow.draw();
