@@ -76,6 +76,7 @@ function move(){
         if(opening.move()){
             fade.next = "select";
             fade.start();
+            document.getElementById("audioBGM").loop = true;
             document.getElementById("audioBGM").play();
         }
     }
