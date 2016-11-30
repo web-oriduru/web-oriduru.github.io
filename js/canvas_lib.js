@@ -111,6 +111,14 @@ function TouchStart(e){
     if(!audio_load){
         document.getElementById("audioBGM").load();
         document.getElementById("audioBGM").currentTime = 0;
+        document.getElementById("audioSE01").load();
+        document.getElementById("audioSE01").currentTime = 0;
+        document.getElementById("audioSE02").load();
+        document.getElementById("audioSE02").currentTime = 0;
+        document.getElementById("audioSE03").load();
+        document.getElementById("audioSE03").currentTime = 0;
+        document.getElementById("audioSE04").load();
+        document.getElementById("audioSE04").currentTime = 0;
         audio_load = true;
     }
 }

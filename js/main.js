@@ -37,6 +37,7 @@ function load(){
     location.href = "https://twitter.com/intent/tweet?text="+ encodeURIComponent(text1)+ encodeURIComponent(text2)+ encodeURIComponent(text3)+"&hashtags=web_oriduru";
     */
     
+    
     /*
     var input_text = window.prompt("おりづるにコメントをつけることができます", "");
     if(input_text != "" && input_text != null){
@@ -127,5 +128,5 @@ function draw() {
     ctx.fillText("touch_y : "+touch_y,50,100+30*1);
 	ctx.fillText("timer   : "+timer,50,100+30*2);
     ctx.fillText("count   : "+oriduru_count,50,100+30*4);
-     */
+    */
 }

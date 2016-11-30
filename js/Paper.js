@@ -17,6 +17,9 @@ class Paper {
         this.blink_arrow = null;
         this.blink_touch = null;
         this.fold();
+        
+        this.completion_alpha = 0;
+        this.blink_twitter = null;
     }
     
     loadImage(num){
@@ -161,7 +164,34 @@ class Paper {
             img[3] = creatImage("play/play_12_004");
             img[4] = creatImage("play/play_12_005");
             img[5] = creatImage("play/play_12_006");
-            img[6] = creatImage("play/play_12_006");
+            img[6] = creatImage("play/play_13_001");
+            //this.blink_arrow = new Blink("play/arrow01",790,560,270,320,0,2000);
+            //this.blink_touch = new Blink("play/hand01",910+20,710+200,280,440,0,2000);
+        }
+        
+        else if(num == 13){
+            load_img = 1;
+            img_max = 6;
+            img[0] = img[6];
+            img[1] = creatImage("play/play_13_002");
+            img[2] = creatImage("play/play_14_001");
+            img[3] = creatImage("play/play_15_001");
+            img[4] = creatImage("play/play_15_002");
+            img[5] = creatImage("play/play_16_001");
+            //this.blink_arrow = new Blink("play/arrow01",790,560,270,320,0,2000);
+            //this.blink_touch = new Blink("play/hand01",910+20,710+200,280,440,0,2000);
+        }
+        
+        else if(num == 17){
+            load_img = 1;
+            img_max = 7;
+            img[0] = img[5];
+            img[1] = creatImage("play/play_17_001");
+            img[2] = creatImage("play/play_18_001");
+            img[3] = creatImage("play/play_19_001");
+            img[4] = creatImage("play/play_20_001");
+            img[5] = creatImage("play/play_21_001");
+            img[6] = creatImage("play/play_21_002");
             //this.blink_arrow = new Blink("play/arrow01",790,560,270,320,0,2000);
             //this.blink_touch = new Blink("play/hand01",910+20,710+200,280,440,0,2000);
         }
@@ -177,6 +207,14 @@ class Paper {
         this.num++;
         this.touch_start = false;
         delete this.img;
+        if(this.num!=1){
+            var rand = Math.floor(Math.random()*4);
+            if(rand==0) document.getElementById("audioSE01").play();
+            if(rand==1) document.getElementById("audioSE02").play();
+            if(rand==2) document.getElementById("audioSE03").play();
+            if(rand==3) document.getElementById("audioSE04").play();
+        }
+        
         this.setNext( 1,890,1100,700,930,false,1);
         this.setNext( 2,this.x2,this.y2,430,660,true,-1);
         this.setNext( 3,this.x2,this.y2,180,410,false,-1);
@@ -244,7 +282,48 @@ class Paper {
         this.setNext(38,this.x2,this.y2,580,350,true,-1);
         if(this.num == 39) this.setBlink(-1,-1,1,1.0,0,580,800);
         this.setNext(39,580,800,580,800,false,-1);
-        this.setNext(40,580,800,580,800,false,-1);
+        
+        if(this.num == 40) this.hit_r = 50;
+        if(this.num == 40) this.setBlink(640,800,1,0.6,-20,710,820);
+        this.setNext(40,710,820,580,790,false,13);
+        if(this.num == 41) this.setBlink(500,800,2,0.6,20,450,820);
+        this.setNext(41,450,820,580,790,false,-1);
+        if(this.num == 42) this.setBlink(-1,-1,0,1.0,0,580,800);
+        if(this.num == 42) touching = false;
+        this.setNext(42,580,800,580,800,false,-1);
+        if(this.num == 43) this.setBlink(640,800,1,0.6,-20,710,820);
+        this.setNext(43,710,820,580,790,false,-1);
+        if(this.num == 44) this.setBlink(500,800,2,0.6,20,450,820);
+        this.setNext(44,450,820,580,790,false,-1);
+        if(this.num == 45) this.setBlink(-1,-1,0,1.0,0,580,800);
+        if(this.num == 45) touching = false;
+        this.setNext(45,580,800,580,800,false,17);
+        
+        if(this.num == 46) this.hit_r = 80;
+        if(this.num == 46) this.setBlink(620,800,1,1.0,40,580,1180);
+        this.setNext(46,580,1180,580,450,false,-1);
+        if(this.num == 47) this.setBlink(-1,-1,0,1.0,0,580,800);
+        this.setNext(47,580,800,580,800,false,-1);
+        if(this.num == 48) this.setBlink(620,800,1,1.0,40,580,1180);
+        this.setNext(48,580,1180,580,450,false,-1);
+        
+        if(this.num == 49) this.setBlink(-1,-1,0,1.0,0,580,800);
+        this.setNext(49,580,800,580,800,false,-1);
+        if(this.num == 50) this.setBlink(420,450,1,0.6,-60,440,450);
+        this.setNext(50,440,450,400,570,false,-1);
+        if(this.num == 51){
+            delete this.blink_arrow;
+            delete this.blink_touch;
+            load_img = 0;
+            img_max=1;
+            img[0] = creatImage("completion/completion");
+            for(var i=0; i<img_max; i++){
+                img[i].onload = function(){ load_img++; console.log("load!!"); }
+            }
+            this.blink_twitter = new Blink("completion/twitter",width/2, height, width, height,0,2000);
+        }
+        this.setNext(51,-9999,-9999,-9999,-9999,false,-1);
+
     }
     
     setBackImage(num){
@@ -293,10 +372,20 @@ class Paper {
     
     
     move(){
+        
+        /*
+        if(this.num < 51){
+            touching=true;
+            this.x1 = 580;
+            this.y1 = 800;
+            this.x2 = 580;
+            this.y2 = 800;
+        }
+         */
+    
         if(touching){
             if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < this.hit_r){
                 this.touch_start = true;
-                console.log("touch!!!!!");
             }
             if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < this.hit_r){
                 if(load_img == img_max){
@@ -304,19 +393,50 @@ class Paper {
                 }
             }
         }
+        
+        if(this.num == 51){
+            if(load_img == img_max){
+                if(this.completion_alpha<255) this.completion_alpha+=5;
+                
+                if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1300,2)) < 100){
+                    var input_text = window.prompt("おりづるにコメントをつけることができます", "");
+                    if(input_text != "" && input_text != null){
+                        location.href = "https://twitter.com/intent/tweet?text="　+ "「Webおりづる」で折り鶴をおりました！　　" + encodeURIComponent(input_text)　+ "　 web-oriduru.github.io" +"&hashtags=web_oriduru";
+                    }
+                    
+                    touching=false;
+                }
+                
+            }
+        }
+        
+        
+        
+        
     }
     
     draw(){
-        drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
-        if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
-        //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
-        //drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
-        
-        if(this.blink_arrow != null){
-            this.blink_arrow.draw();
-        }
-        if(this.blink_touch != null){
-            this.blink_touch.draw();
+        if(this.num == 51 && load_img == img_max){
+            if(load_img == img_max){
+                drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
+                drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
+                if(this.blink_twitter != null){
+                    this.blink_twitter.draw();
+                }
+            }
+        }else{
+            drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
+            if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
+            
+            //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
+            //drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
+            
+            if(this.blink_arrow != null){
+                this.blink_arrow.draw();
+            }
+            if(this.blink_touch != null){
+                this.blink_touch.draw();
+            }
         }
     }
 }
