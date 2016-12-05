@@ -401,7 +401,7 @@ class Paper {
                 if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1300,2)) < 100){
                     var input_text = window.prompt("おりづるにコメントをつけることができます", "");
                     if(input_text != "" && input_text != null){
-                        location.href = "https://twitter.com/intent/tweet?text="　+ "「Webおりづる」で折り鶴をおりました！　　" + encodeURIComponent(input_text)　+ "　 web-oriduru.github.io" +"&hashtags=web_oriduru";
+                        location.href = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
                     }
                     
                     touching=false;
