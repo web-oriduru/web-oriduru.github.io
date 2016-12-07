@@ -5,7 +5,7 @@ class Oriduru {
         this.y = y;
         this.vx = 0;//Math.floor(Math.random()*3)-1;
         this.vy = 10;
-        this.size = 250;
+        this.size = 200;
         this.rotate = 0;//Math.floor(Math.random()*360);
         this.exist = true;
     }
@@ -14,7 +14,7 @@ class Oriduru {
     move(oridurus){
         if(this.exist){
             
-            var size_rate = 0.4;
+            var size_rate = 0.6;
             if(Math.sqrt(Math.pow(this.x-touch_x,2) + Math.pow(this.y-touch_y,2)) < this.size*size_rate){
                 this.x = touch_x;
                 this.y = touch_y;
@@ -36,8 +36,8 @@ class Oriduru {
                         var j = 0;
                         var j_max = 3;
                         for(j=0;j<j_max;j++){
-                            this.vx = Math.floor(Math.random()*2)-1;
-                            this.vy = Math.floor(Math.random()*3)+1;
+                            this.vx = Math.floor(Math.random()*4)-2;
+                            this.vy = Math.floor(Math.random()*2)+1;
                             if(!(Math.sqrt(Math.pow((this.x+this.vx)-oridurus[i].x,2) + Math.pow((this.y+this.vy)-oridurus[i].y,2)) < this.size*size_rate)){
                                 break;
                             }
