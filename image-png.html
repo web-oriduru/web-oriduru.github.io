@@ -14,12 +14,12 @@
 		</style>
         <script>
             function load(){
-                document.getElementById("image_png").src = splitString(localStorage.getItem("image_png"),);
+                document.getElementById("image_png").src = localStorage.getItem("image_png");
                 console.log(localStorage.getItem("image_png"));
             }
         </script>
 	</head>
 	<body onLoad="load()">
-        <img src="resources/oriduru0.png" id="image_png" width="1080" height="1920">
+        <img id="image_png" width="1080" height="1920">
 	</body>
 </html>
