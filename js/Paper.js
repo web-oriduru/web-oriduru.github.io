@@ -460,6 +460,7 @@ class Paper {
     
     draw(){
         drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
+        
         if(this.num == 51 && load_img == img_max){
             drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
             drawImage(img[1], width/2, width/2, width, width, this.circle_deg/10, this.completion_alpha);
@@ -475,7 +476,7 @@ class Paper {
             drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
             drawImage(img[4], width/2, height/2, width, height, 0, this.completion_alpha);
             this.blink_arrow.draw();
-        }else{
+        }else if(this.num <= 50){
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
             
             //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
