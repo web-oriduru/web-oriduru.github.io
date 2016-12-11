@@ -78,8 +78,9 @@ function move(){
 
     if(state == "opening"){
         if(opening.move()){
-            localStorage.setItem("image_png",canvas.toDataURL());
-            location.href = "image-png.html";
+            //localStorage.setItem("image_png",canvas.toDataURL());
+            document.getElementById("image_png").src = canvas.toDataURL();
+            //location.href = "image-png.html";
             fade.next = "select";
             fade.start();
             document.getElementById("audioBGM").loop = true;
