@@ -396,7 +396,7 @@ class Paper {
             this.x2 = 580;
             this.y2 = 800;
         }
-         */
+        */
         
     
         if(touching){
@@ -417,8 +417,8 @@ class Paper {
                 this.s_oriduru.move();
                 
                 if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1100,2)) < 100){
-                    this.input_text = window.prompt("おりづるにコメントをつけることができます", "");
-                    if(this.input_text != "" && this.input_text != null){
+                    this.input_text = window.prompt("おりづるにコメントをつけることができます（10文字まで）", "");
+                    if(this.input_text != "" && this.input_text != null && this.input_text.length<=10){
                         this.num++;
                         this.completion_alpha = 0;
                         this.s_oriduru.mode = 2;
@@ -450,7 +450,7 @@ class Paper {
             if(this.completion_alpha<255) this.completion_alpha+=5;
             this.clowd_x--;
             this.s_oriduru.move();
-            this.blink_arrow.y =700 + (this.clowd_x)%300;
+            this.blink_arrow.y =800 + (this.clowd_x)%300;
             
             //location.href = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(this.input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
         }
@@ -477,7 +477,7 @@ class Paper {
             this.s_oriduru.draw();
             drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
             drawImage(img[4], width/2, height/2, width, height, 0, this.completion_alpha);
-            drawText(this.input_text,200,1100,64,0,0,0,255);
+            drawText(this.input_text,width/2-(this.input_text.length*75)/2,1100,64,0,0,0,255);
             this.blink_arrow.draw();
         }else if(this.num <= 50){
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
