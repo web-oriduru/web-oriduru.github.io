@@ -475,6 +475,7 @@ class Paper {
             this.s_oriduru.draw();
             drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
             drawImage(img[4], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawText(this.input_text,200,1100,64,0,0,0,255);
             this.blink_arrow.draw();
         }else if(this.num <= 50){
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
