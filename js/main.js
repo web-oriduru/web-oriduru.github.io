@@ -59,6 +59,9 @@ function load(){
     width = 1080;
     height = 1920;
     scroll = true;
+    scrollable = true;
+    
+    window.scrollTo(0,0);
 
     state = "opening";
     
@@ -79,6 +82,7 @@ function move(){
             fade.start();
             document.getElementById("audioBGM").loop = true;
             document.getElementById("audioBGM").play();
+            window.scrollTo(0,0);
         }
     }
     else if(state == "select"){
@@ -86,6 +90,8 @@ function move(){
             fade.next = "paper";
             paper.setBackImage(select.color_num);
             fade.start();
+            scrollable = false;
+            window.scrollTo(0,0);
         }
     }
     else if(state == "paper"){
@@ -121,9 +127,9 @@ function draw() {
 
     fade.draw();
     
-    /*
     setFontSize(32);
     ctx.fillStyle ='rgb(255,255,255)';
+    /*
     ctx.fillText("touch_x : "+touch_x,50,100+30*0);
     ctx.fillText("touch_y : "+touch_y,50,100+30*1);
 	ctx.fillText("timer   : "+timer,50,100+30*2);

@@ -311,22 +311,37 @@ class Paper {
         this.setNext(49,580,800,580,800,false,-1);
         if(this.num == 50) this.setBlink(420,450,1,0.6,-60,440,450);
         this.setNext(50,440,450,400,570,false,-1);
+        
         if(this.num == 51){
             delete this.blink_arrow;
             delete this.blink_touch;
             load_img = 0;
-            img_max=1;
-            img[0] = creatImage("completion/completion");
+            img_max=4;
+            img[0] = creatImage("completion/complete_back");
+            img[1] = creatImage("completion/complete_circle");
+            img[2] = creatImage("completion/complete_title");
+            img[3] = creatImage("completion/complete_comment");
             for(var i=0; i<img_max; i++){
                 img[i].onload = function(){ load_img++; console.log("load!!"); }
             }
-            this.blink_twitter = new Blink("completion/twitter",width/2, height, width, height,0,2000);
+            this.circle_deg = 0;
+            if(this.color_num == 0) this.s_oriduru = new SendOriduru("oriduru/monitor1_red",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 1) this.s_oriduru = new SendOriduru("oriduru/monitor1_yellow",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 2) this.s_oriduru = new SendOriduru("oriduru/monitor1_green",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 3) this.s_oriduru = new SendOriduru("oriduru/monitor1_blue",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 4) this.s_oriduru = new SendOriduru("oriduru/monitor1_orange",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 5) this.s_oriduru = new SendOriduru("oriduru/monitor1_pink",width/2,height/3,700,700,20,10);
+            else if(this.color_num == 6) this.s_oriduru = new SendOriduru("oriduru/monitor1_purple",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 7) this.s_oriduru = new SendOriduru("oriduru/monitor1_brown",width/2,height/3,700,700,20,1);
         }
+        
+        
         this.setNext(51,-9999,-9999,-9999,-9999,false,-1);
 
     }
     
     setBackImage(num){
+        this.color_num = num;
         if(num== 0) this.back_img = creatImage("play/paper_00");
         if(num== 1) this.back_img = creatImage("play/paper_01");
         if(num== 2) this.back_img = creatImage("play/paper_02");
@@ -373,7 +388,6 @@ class Paper {
     
     move(){
         
-        /*
         if(this.num < 51){
             touching=true;
             this.x1 = 580;
@@ -381,7 +395,7 @@ class Paper {
             this.x2 = 580;
             this.y2 = 800;
         }
-         */
+        
     
         if(touching){
             if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < this.hit_r){
@@ -397,17 +411,46 @@ class Paper {
         if(this.num == 51){
             if(load_img == img_max){
                 if(this.completion_alpha<255) this.completion_alpha+=5;
+                this.circle_deg = (this.circle_deg+1)%3600;
+                this.s_oriduru.move();
                 
-                if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1300,2)) < 100){
-                    var input_text = window.prompt("おりづるにコメントをつけることができます", "");
-                    if(input_text != "" && input_text != null){
-                        location.href = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
+                if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1100,2)) < 100){
+                    this.input_text = window.prompt("おりづるにコメントをつけることができます", "");
+                    if(this.input_text != "" && this.input_text != null){
+                        this.num++;
+                        this.completion_alpha = 0;
+                        this.s_oriduru.mode = 2;
+                        this.s_oriduru.w = 0;
+                        this.s_oriduru.h = 0;
+                        this.s_oriduru.max_w = 600;
+                        this.s_oriduru.max_h = 600;
+                        this.clowd_x = 1000;
+                        load_img = 0;
+                        img_max=5;
+                        img[0] = creatImage("completion/sousin_back");
+                        img[1] = creatImage("completion/sousin_backkumo");
+                        img[2] = creatImage("completion/sousin_backkumo2");
+                        img[3] = creatImage("completion/sousin_fukidashi");
+                        img[4] = creatImage("completion/sousin_moji");
+                        for(var i=0; i<img_max; i++){
+                            img[i].onload = function(){ load_img++; console.log("load!!"); }
+                        }
+                        this.blink_arrow = new Blink("completion/sousin_yajirushi",width/2,height/2,width,height,0,3000);
                     }
-                    
                     touching=false;
                 }
                 
             }
+        }
+        
+        if(this.num == 52)
+        {
+            if(this.completion_alpha<255) this.completion_alpha+=5;
+            this.clowd_x--;
+            this.s_oriduru.move();
+            this.blink_arrow.y =700 + (this.clowd_x)%300;
+            
+            //location.href = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(this.input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
         }
         
         
@@ -416,16 +459,23 @@ class Paper {
     }
     
     draw(){
+        drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
         if(this.num == 51 && load_img == img_max){
-            if(load_img == img_max){
-                drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
-                drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
-                if(this.blink_twitter != null){
-                    this.blink_twitter.draw();
-                }
-            }
+            drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[1], width/2, width/2, width, width, this.circle_deg/10, this.completion_alpha);
+            drawImage(img[2], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
+            this.s_oriduru.draw();
+            
+        }else if(this.num == 52 && load_img == img_max){
+            drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[1], width/2+this.clowd_x/30 , height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[2], width/2+this.clowd_x/50, height/2, width, height, 0, this.completion_alpha);
+            this.s_oriduru.draw();
+            drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[4], width/2, height/2, width, height, 0, this.completion_alpha);
+            this.blink_arrow.draw();
         }else{
-            drawImage(this.back_img, width/2, height/2, width, height, 0, 255);
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
             
             //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);

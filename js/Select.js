@@ -16,10 +16,10 @@ class Select{
         if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[ 5],2) + Math.pow(touch_y-this.color_pos_y[ 5],2)) < 150){ this.color_num =  5; touching =false; }
         if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[ 6],2) + Math.pow(touch_y-this.color_pos_y[ 6],2)) < 150){ this.color_num =  6; touching =false; }
         if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[ 7],2) + Math.pow(touch_y-this.color_pos_y[ 7],2)) < 150){ this.color_num =  7; touching =false; }
-        if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[ 8],2) + Math.pow(touch_y-this.color_pos_y[ 8],2)) < 150){ this.color_num =  8; touching =false; }
-        if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[ 9],2) + Math.pow(touch_y-this.color_pos_y[ 9],2)) < 150){ this.color_num =  9; touching =false; }
-        if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[10],2) + Math.pow(touch_y-this.color_pos_y[10],2)) < 150){ this.color_num = 10; touching =false; }
-        if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[11],2) + Math.pow(touch_y-this.color_pos_y[11],2)) < 150){ this.color_num = 11; touching =false; }
+        //if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[ 8],2) + Math.pow(touch_y-this.color_pos_y[ 8],2)) < 150){ this.color_num =  8; touching =false; }
+        //if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[ 9],2) + Math.pow(touch_y-this.color_pos_y[ 9],2)) < 150){ this.color_num =  9; touching =false; }
+        //if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[10],2) + Math.pow(touch_y-this.color_pos_y[10],2)) < 150){ this.color_num = 10; touching =false; }
+        //if(touching && Math.sqrt(Math.pow(touch_x-this.color_pos_x[11],2) + Math.pow(touch_y-this.color_pos_y[11],2)) < 150){ this.color_num = 11; touching =false; }
         
         this.select.setPosition(this.color_pos_x[this.color_num], this.color_pos_y[this.color_num]);
         

@@ -9,7 +9,8 @@ var dh;
 var touching = false;
 var touch_x=0;
 var touch_y=0;
-var scroll = true;
+var scroll = true; //スクロール可能かどうか
+var scrollable = true; //スクロール可能な時、端じゃなくてもスクロールできるか
 var clicking = false;
 var timer;
 var audio_load = false;
@@ -98,7 +99,7 @@ function TouchStart(e){
     touch_y = touch_list[0].pageY/dh;
     touching = true;
     
-    if(touch_x>100 && touch_x<1080-100){
+    if((touch_x>100 && touch_x<1080-100) && !scrollable){
         e.preventDefault();
     }else{
         
