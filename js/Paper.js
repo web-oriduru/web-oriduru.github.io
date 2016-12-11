@@ -472,12 +472,12 @@ class Paper {
             
         }else if(this.num == 52 && load_img == img_max){
             drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
-            drawImage(img[1], width/2+this.clowd_x/30 , height/2, width, height, 0, this.completion_alpha);
-            drawImage(img[2], width/2+this.clowd_x/50, height/2, width, height, 0, this.completion_alpha);
+            //drawImage(img[1], width/2+this.clowd_x/30 , height/2, width, height, 0, this.completion_alpha);
+            //drawImage(img[2], width/2+this.clowd_x/50, height/2, width, height, 0, this.completion_alpha);
             this.s_oriduru.draw();
             drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
             drawImage(img[4], width/2, height/2, width, height, 0, this.completion_alpha);
-            drawText(this.input_text,200,1100,64,0,0,0,255);
+            //drawText(this.input_text,200,1100,64,0,0,0,255);
             this.blink_arrow.draw();
         }else if(this.num <= 50){
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
