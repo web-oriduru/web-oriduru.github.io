@@ -388,6 +388,7 @@ class Paper {
     
     move(){
         
+        /*
         if(this.num < 51){
             touching=true;
             this.x1 = 580;
@@ -395,6 +396,7 @@ class Paper {
             this.x2 = 580;
             this.y2 = 800;
         }
+         */
         
     
         if(touching){
