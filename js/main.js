@@ -83,10 +83,6 @@ function move(){
             document.getElementById("audioBGM").loop = true;
             document.getElementById("audioBGM").play();
             window.scrollTo(0,0);
-            
-            
-            localStorage.setItem("image_png",canvas.toDataURL());
-            location.href = "image-png.html";
         }
     }
     else if(state == "select"){
@@ -121,6 +117,10 @@ function draw() {
     
     if(state == "opening"){
         opening.draw();
+        if(touching){
+            localStorage.setItem("image_png",canvas.toDataURL());
+            location.href = "image-png.html";
+        }
     }
     else if(state == "select"){
         select.draw();
