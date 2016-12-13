@@ -14,7 +14,8 @@
 		</style>
         <script>
             function load(){
-                document.getElementById("image_png").src = localStorage.getItem("image_png");
+                var png = localStorage.getItem("image_png");
+                document.getElementById("image_png").src = png;
                 console.log("URL is : " +localStorage.getItem("image_png"));
             }
         </script>
