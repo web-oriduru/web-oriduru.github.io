@@ -85,7 +85,7 @@ function move(){
             window.scrollTo(0,0);
             
             
-            //localStorage.setItem("image_png",canvas.toDataURL());
+            localStorage.setItem("image_png","ASDF");
             location.href = "image-png.html";
         }
     }
