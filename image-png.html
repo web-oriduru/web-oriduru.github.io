@@ -16,11 +16,14 @@
             function load(){
                 var png = localStorage.getItem("image_png");
                 document.getElementById("image_png").src = png;
-                console.log("URL is : " +localStorage.getItem("image_png"));
+                console.log("URL is : " +png);
             }
         </script>
 	</head>
 	<body onLoad="load()">
+        <form>
+                <input type="button" value="画像に変換" onclick="load()">
+        </form>
         <div><img border="1" id="image_png" width="1080" height="1920"></divs>
 	</body>
 </html>
