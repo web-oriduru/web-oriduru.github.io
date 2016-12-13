@@ -117,16 +117,18 @@ function draw() {
     
     if(state == "opening"){
         opening.draw();
-        if(touching){
-            localStorage.setItem("image_png",canvas.toDataURL());
-            location.href = "image-png.html";
-        }
     }
     else if(state == "select"){
         select.draw();
     }
     else if(state == "paper"){
         paper.draw();
+        /*
+        if(touching){
+            localStorage.setItem("image_png",canvas.toDataURL());
+            location.href = "image-png.html";
+        }
+         */
     }
 
     fade.draw();
