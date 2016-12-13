@@ -56,5 +56,9 @@ class SendOriduru{
     draw(){
         var alpha = 55 + 200 * Math.sin(Math.PI * ((timer%this.max_count)/this.max_count));
         drawImage(this.img, this.x, this.y, this.w, this.h, this.r, alpha);
-    }
+        /*
+        drawText("  y : "+this.y,50,1300,64,0,0,0,255);
+        drawText("lly : "+this.last2_y,50,1400,64,0,0,0,255);
+        drawText("l-y : "+(this.last2_y-this.y),50,1500,64,0,0,0,255);
+        */
 }
