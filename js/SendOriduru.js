@@ -61,4 +61,5 @@ class SendOriduru{
         drawText("lly : "+this.last2_y,50,1400,64,0,0,0,255);
         drawText("l-y : "+(this.last2_y-this.y),50,1500,64,0,0,0,255);
         */
+    }
 }
