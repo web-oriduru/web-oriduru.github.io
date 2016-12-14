@@ -467,6 +467,7 @@ class Paper {
                     img[i].onload = function(){ load_img++; console.log("load!!"); }
                 }
                 // データストアへの登録
+                var ncmb = new NCMB("ff35ae3dd5a5aa93d58f4981e263cf74a9e9a1de08088807440a75b62e64bfd1","3e58744998bc64a634d8bb28a5e3237eb7ae8b2047252225dc501eedf62d0dbc");
                 var TestClass = ncmb.DataStore("SendOriduru");
                 var testClass = new TestClass();
                 testClass.set("comment", this.input_text);
