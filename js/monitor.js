@@ -66,15 +66,17 @@ function move(){
     for(var i=0; i<new_oriduru_color.length;i++){
         if(new_oriduru_color[i] != -1){
             for(var j=0;j<oridurus.length;j++){
-                if(oridurus[i] !== null){
+                if(oridurus[j] == null){
                     if(new_oriduru_color[i]== 0) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_red" ,width/16 + width/8* 0,-Math.floor(Math.random()*500));
-                    if(new_oriduru_color[i]== 1) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_pink" ,width/16 + width/8* 1,-Math.floor(Math.random()*500));
-                    if(new_oriduru_color[i]== 2) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_orange" ,width/16 + width/8* 2,-Math.floor(Math.random()*500));
-                    if(new_oriduru_color[i]== 3) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_yellow" ,width/16 + width/8* 3,-Math.floor(Math.random()*500));
-                    if(new_oriduru_color[i]== 4) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_green" ,width/16 + width/8* 4,-Math.floor(Math.random()*500));
-                    if(new_oriduru_color[i]== 5) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_blue" ,width/16 + width/8* 5,-Math.floor(Math.random()*500));
-                    if(new_oriduru_color[i]== 6) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_purple" ,width/16 + width/8* 6,-Math.floor(Math.random()*500));
-                    if(new_oriduru_color[i]== 7) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_brown" ,width/16 + width/8* 7,-Math.floor(Math.random()*500));
+                    else if(new_oriduru_color[i]== 5) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_pink" ,width/16 + width/8* 1,-Math.floor(Math.random()*500));
+                    else if(new_oriduru_color[i]== 4) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_orange" ,width/16 + width/8* 2,-Math.floor(Math.random()*500));
+                    else if(new_oriduru_color[i]== 1) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_yellow" ,width/16 + width/8* 3,-Math.floor(Math.random()*500));
+                    else if(new_oriduru_color[i]== 2) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_green" ,width/16 + width/8* 4,-Math.floor(Math.random()*500));
+                    else if(new_oriduru_color[i]== 3) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_blue" ,width/16 + width/8* 5,-Math.floor(Math.random()*500));
+                    else if(new_oriduru_color[i]== 6) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_purple" ,width/16 + width/8* 6,-Math.floor(Math.random()*500));
+                    else if(new_oriduru_color[i]== 7) oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_brown" ,width/16 + width/8* 7,-Math.floor(Math.random()*500));
+                    else oridurus[j] = new Oriduru("oriduru/monitor"+(Math.floor(Math.random()*5)+1)+"_brown" ,width/16 + width/8* 7,-Math.floor(Math.random()*500));
+                    j = oridurus.length+1;
                 }
             }
             new_oriduru_color[i] = -1;
