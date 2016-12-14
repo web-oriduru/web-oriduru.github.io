@@ -482,7 +482,8 @@ class Paper {
         {
             if(this.completion_alpha<255) this.completion_alpha+=5;
             if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1300,2)) < 100){
-                location.href = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(this.input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
+                var t_url = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(this.input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
+                window.open(t_url);
             }
         }
         
@@ -524,7 +525,7 @@ class Paper {
                 drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
                 drawText(this.input_text,width/2-(this.input_text.length*86)/2,1100,72,0,0,0,255);
                 localStorage.setItem("image_png",canvas.toDataURL());
-                location.href = "image-png.html";
+                window.open('image-png.html');
             }
             
         }else if(this.num <= 50){
