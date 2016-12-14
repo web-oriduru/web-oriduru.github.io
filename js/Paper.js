@@ -17,6 +17,7 @@ class Paper {
         this.blink_arrow = null;
         this.blink_touch = null;
         this.fold();
+        this.action_quality = 0;
         
         this.completion_alpha = 0;
         this.blink_twitter = null;
@@ -315,6 +316,12 @@ class Paper {
         if(this.num == 51){
             delete this.blink_arrow;
             delete this.blink_touch;
+            if(this.action_quality<20)this.quality = 1;
+            else if(this.action_quality<25) this.quality = 2;
+            else if(this.action_quality<30) this.quality = 3;
+            else if(this.action_quality<35) this.quality = 4;
+            else this.quality = 5;
+            
             load_img = 0;
             img_max=4;
             img[0] = creatImage("completion/complete_back");
@@ -325,14 +332,14 @@ class Paper {
                 img[i].onload = function(){ load_img++; console.log("load!!"); }
             }
             this.circle_deg = 0;
-            if(this.color_num == 0) this.s_oriduru = new SendOriduru("oriduru/monitor1_red",width/2,height/3,700,700,20,1);
-            else if(this.color_num == 1) this.s_oriduru = new SendOriduru("oriduru/monitor1_yellow",width/2,height/3,700,700,20,1);
-            else if(this.color_num == 2) this.s_oriduru = new SendOriduru("oriduru/monitor1_green",width/2,height/3,700,700,20,1);
-            else if(this.color_num == 3) this.s_oriduru = new SendOriduru("oriduru/monitor1_blue",width/2,height/3,700,700,20,1);
-            else if(this.color_num == 4) this.s_oriduru = new SendOriduru("oriduru/monitor1_orange",width/2,height/3,700,700,20,1);
-            else if(this.color_num == 5) this.s_oriduru = new SendOriduru("oriduru/monitor1_pink",width/2,height/3,700,700,20,10);
-            else if(this.color_num == 6) this.s_oriduru = new SendOriduru("oriduru/monitor1_purple",width/2,height/3,700,700,20,1);
-            else if(this.color_num == 7) this.s_oriduru = new SendOriduru("oriduru/monitor1_brown",width/2,height/3,700,700,20,1);
+            if(this.color_num == 0) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_red",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 1) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_yellow",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 2) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_green",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 3) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_blue",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 4) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_orange",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 5) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_pink",width/2,height/3,700,700,20,10);
+            else if(this.color_num == 6) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_purple",width/2,height/3,700,700,20,1);
+            else if(this.color_num == 7) this.s_oriduru = new SendOriduru("oriduru/monitor"+this.quality+"_brown",width/2,height/3,700,700,20,1);
         }
         
         
@@ -388,7 +395,7 @@ class Paper {
     
     move(){
         
-        
+        /*
         if(this.num < 51){
             touching=true;
             this.x1 = 580;
@@ -396,14 +403,19 @@ class Paper {
             this.x2 = 580;
             this.y2 = 800;
         }
-        
+        */
         
     
         if(touching){
-            if(!this.touch_start && Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2)) < this.hit_r){
+            var touch_dis1 = Math.sqrt(Math.pow(touch_x-this.x1,2) + Math.pow(touch_y-this.y1,2));
+            if(!this.touch_start && touch_dis1 < this.hit_r){
                 this.touch_start = true;
+                this.action_quality += touch_dis1/this.hit_r;
+                console.log("AQ = "+this.action_quality);
+                
             }
-            if(this.touch_start && Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2)) < this.hit_r){
+            var touch_dis2 = Math.sqrt(Math.pow(touch_x-this.x2,2) + Math.pow(touch_y-this.y2,2));
+            if(this.touch_start && touch_dis2 < this.hit_r){
                 if(load_img == img_max){
                     this.fold();
                 }
@@ -472,7 +484,7 @@ class Paper {
                 var testClass = new TestClass();
                 testClass.set("color", this.color_num);
                 testClass.set("comment", this.input_text);
-                testClass.set("quality", 1);
+                testClass.set("quality", this.quality);
                 testClass.save()
                 .then(function(){})
                 .catch(function(err){});
