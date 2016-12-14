@@ -160,10 +160,13 @@ function draw() {
             c_alpha = 255 * ((show_wait-show_counter)/30.0);
         }
         drawImage(img_circle, width/2, height/2, 1200, 1200, show_counter/10, c_alpha/2);
-        drawImage(oriduru_image[show_color][show_quality], width/2, height/3, 700, 700, 10, c_alpha);
+        drawImage(oriduru_image[show_color][show_quality], width/2, height/3, 700*(c_alpha/255.0), 700*(c_alpha/255.0), 10, c_alpha);
         drawImage(img_window, width/2, height/3*2, 1200, 2000, 0, c_alpha);
         drawText(show_comment,width/2-(show_comment.length*100)/2,880,80,0,0,0,c_alpha);
     }
+    
+    drawText("現在、　　　　　　羽",1350,150,40,0,0,0,255);
+    drawText(oriduru_count,1700-Math.floor(Math.log10(oriduru_count)+1)*45,150,80,0,0,0,255);
     
     /*
     setFontSize(32);
