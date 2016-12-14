@@ -35,7 +35,7 @@ function creatImage(file_name){
 //------------------------------------------------------------------------------
 function setFontSize(size){
     var font_size = size * (dw+dh)/2;
-    ctx.font = font_size + "pt 'メイリオ'";
+    ctx.font = font_size + "pt 'rounded'";
 }
 //------------------------------------------------------------------------------
 function drawImage(img,x,y,w,h,r,a){

@@ -31,6 +31,7 @@ class SendOriduru{
         if(this.mode == 2){
             if(this.send_speed>0){
                 this.y-=this.send_speed;
+                if(this.y < -800) return true;
                 
             }else{
                 if(touching){
@@ -51,11 +52,12 @@ class SendOriduru{
             this.last_x = this.x;
             this.last_y = this.y;
         }
+        
+        return false;
     }
     
     draw(){
-        var alpha = 55 + 200 * Math.sin(Math.PI * ((timer%this.max_count)/this.max_count));
-        drawImage(this.img, this.x, this.y, this.w, this.h, this.r, alpha);
+        drawImage(this.img, this.x, this.y, this.w, this.h, this.r, 255);
         /*
         drawText("  y : "+this.y,50,1300,64,0,0,0,255);
         drawText("lly : "+this.last2_y,50,1400,64,0,0,0,255);

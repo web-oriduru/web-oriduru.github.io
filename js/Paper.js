@@ -446,12 +446,44 @@ class Paper {
         {
             if(this.completion_alpha<255) this.completion_alpha+=5;
             this.clowd_x--;
-            this.s_oriduru.move();
             this.blink_arrow.y =1000 + (this.clowd_x)%300;
-            
-            //location.href = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(this.input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
+            if(this.s_oriduru.move()){
+                delete this.blink_arrow;
+                this.num++;
+                this.completion_alpha = 0;
+                this.s_oriduru.mode = 1;
+                this.s_oriduru.x = width/2;
+                this.s_oriduru.y = height/3;
+                this.s_oriduru.w = 600;
+                this.s_oriduru.h = 600;
+                this.s_oriduru.send_speed = 0;
+                load_img = img_max;
+                img_max=9;
+                img[5] = creatImage("completion/send_back");
+                img[6] = creatImage("completion/send_text");
+                img[7] = creatImage("completion/send_saveimg");
+                img[8] = creatImage("completion/send_twitter");
+                for(var i=0; i<img_max; i++){
+                    img[i].onload = function(){ load_img++; console.log("load!!"); }
+                }
+                // データストアへの登録
+                var TestClass = ncmb.DataStore("SendOriduru");
+                var testClass = new TestClass();
+                testClass.set("comment", this.input_text);
+                testClass.set("quality", 1);
+                testClass.save()
+                .then(function(){})
+                .catch(function(err){});
+            }
         }
         
+        if(this.num == 53 && load_img == img_max)
+        {
+            if(this.completion_alpha<255) this.completion_alpha+=5;
+            if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1300,2)) < 100){
+                location.href = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(this.input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
+            }
+        }
         
         
         
@@ -474,8 +506,25 @@ class Paper {
             this.s_oriduru.draw();
             drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
             drawImage(img[4], width/2, height/2, width, height, 0, this.completion_alpha);
-            drawText(this.input_text,width/2-(this.input_text.length*75)/2,1100,64,0,0,0,255);
+            drawText(this.input_text,width/2-(this.input_text.length*86)/2,1100,72,0,0,0,255);
             this.blink_arrow.draw();
+            
+        }else if(this.num == 53 && load_img == img_max){
+            drawImage(img[5], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[6], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[7], width/2, height/2, width, height, 0, this.completion_alpha);
+            drawImage(img[8], width/2, height/2, width, height, 0, this.completion_alpha);
+            
+            if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-900,2)) < 100){
+                drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
+                drawImage(img[1], width/2+this.clowd_x/30 , height/2, width, height, 0, this.completion_alpha);
+                drawImage(img[2], width/2+this.clowd_x/50, height/2, width, height, 0, this.completion_alpha);
+                this.s_oriduru.draw();
+                drawImage(img[3], width/2, height/2, width, height, 0, this.completion_alpha);
+                drawText(this.input_text,width/2-(this.input_text.length*86)/2,1100,72,0,0,0,255);
+                localStorage.setItem("image_png",canvas.toDataURL());
+                location.href = "image-png.html";
+            }
             
         }else if(this.num <= 50){
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
