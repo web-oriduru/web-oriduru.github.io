@@ -26,7 +26,7 @@ function load(){
           var first_num = oriduru_count;
           if(first_num>50) first_num = 50;
           for(var i=0;i<first_num;i++){
-            if(new_oriduru_color[i]== 0) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_red" ,width/16 + width/8* 0,-Math.floor(Math.random()*500));
+            if(results[i].get("color")== 0) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_red" ,width/16 + width/8* 0,-Math.floor(Math.random()*500));
             else if(results[i].get("color")== 5) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_pink" ,width/16 + width/8* 1,-Math.floor(Math.random()*500));
             else if(results[i].get("color")== 4) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_orange" ,width/16 + width/8* 2,-Math.floor(Math.random()*500));
             else if(results[i].get("color")== 1) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_yellow" ,width/16 + width/8* 3,-Math.floor(Math.random()*500));
