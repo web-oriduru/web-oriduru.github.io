@@ -98,6 +98,7 @@ function TouchStart(e){
     touch_x = touch_list[0].pageX/dw;
     touch_y = touch_list[0].pageY/dh;
     touching = true;
+    console.log("touch_x : touch_y = "+touch_x+" : "+touch_y);
     
     if((touch_x>100 && touch_x<1080-100) && !scrollable){
         e.preventDefault();

@@ -135,6 +135,6 @@ function draw() {
     ctx.fillText("touch_y : "+touch_y,50,100+30*1);
 	ctx.fillText("timer   : "+timer,50,100+30*2);
     ctx.fillText("count   : "+oriduru_count,50,100+30*4);
-     */
+    */
     
 }

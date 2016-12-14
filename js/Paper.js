@@ -388,7 +388,7 @@ class Paper {
     
     move(){
         
-        /*
+        
         if(this.num < 51){
             touching=true;
             this.x1 = 580;
@@ -396,7 +396,7 @@ class Paper {
             this.x2 = 580;
             this.y2 = 800;
         }
-        */
+        
         
     
         if(touching){
@@ -482,7 +482,7 @@ class Paper {
         if(this.num == 53 && load_img == img_max)
         {
             if(this.completion_alpha<255) this.completion_alpha+=5;
-            if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-1300,2)) < 100){
+            if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-700,2)) < 100){
                 var t_url = "https://twitter.com/intent/tweet?text="　+ "「" + encodeURIComponent(this.input_text)　+ "」　うぇぶおりづるで折り鶴を折りました！　 web-oriduru.github.io" +"&hashtags=うぇぶおりづる"+"&hashtags=web_oriduru";
                 //window.open(t_url);
                 location.href = t_url;
@@ -520,7 +520,7 @@ class Paper {
             drawImage(img[7], width/2, height/2, width, height, 0, this.completion_alpha);
             drawImage(img[8], width/2, height/2, width, height, 0, this.completion_alpha);
             
-            if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-900,2)) < 100){
+            if(touching && Math.sqrt(Math.pow(touch_x-width/2,2) + Math.pow(touch_y-480,2)) < 100){
                 drawImage(img[0], width/2, height/2, width, height, 0, this.completion_alpha);
                 drawImage(img[1], width/2+this.clowd_x/30 , height/2, width, height, 0, this.completion_alpha);
                 drawImage(img[2], width/2+this.clowd_x/50, height/2, width, height, 0, this.completion_alpha);
