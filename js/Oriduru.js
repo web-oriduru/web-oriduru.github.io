@@ -26,6 +26,7 @@ class Oriduru {
             
             
             for(var i=0;i<oridurus.length;i++){
+                if(oridurus[i] == null) continue;
                 if(oridurus[i].exist && (Math.sqrt(Math.pow((this.x+this.vx)-oridurus[i].x,2) + Math.pow((this.y+this.vy)-oridurus[i].y,2)) < this.size*size_rate)){
                     if(this.x<oridurus[i].x){
                         this.vx=0;
