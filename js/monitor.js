@@ -4,6 +4,12 @@ var five_timer = 0;
 var new_oriduru_color = new Array(64);
 var new_oriduru_quality = new Array(64);
 var new_oriduru_comment = new Array(64);
+var show_color = 1;
+var show_quality = 1;
+var show_comment = "コメント";
+var show_counter = 0;
+var show_wait = 300;
+var img_window = creatImage("completion/sousin_fukidashi");
 var ncmb = new NCMB("ff35ae3dd5a5aa93d58f4981e263cf74a9e9a1de08088807440a75b62e64bfd1","3e58744998bc64a634d8bb28a5e3237eb7ae8b2047252225dc501eedf62d0dbc");
 //------------------------------------------------------------------------------
 function load(){
@@ -26,15 +32,15 @@ function load(){
           var first_num = oriduru_count;
           if(first_num>50) first_num = 50;
           for(var i=0;i<first_num;i++){
-            if(results[i].get("color")== 0) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_red" ,width/16 + width/8* 0,-Math.floor(Math.random()*500));
-            else if(results[i].get("color")== 5) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_pink" ,width/16 + width/8* 1,-Math.floor(Math.random()*500));
-            else if(results[i].get("color")== 4) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_orange" ,width/16 + width/8* 2,-Math.floor(Math.random()*500));
-            else if(results[i].get("color")== 1) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_yellow" ,width/16 + width/8* 3,-Math.floor(Math.random()*500));
-            else if(results[i].get("color")== 2) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_green" ,width/16 + width/8* 4,-Math.floor(Math.random()*500));
-            else if(results[i].get("color")== 3) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_blue" ,width/16 + width/8* 5,-Math.floor(Math.random()*500));
-            else if(results[i].get("color")== 6) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_purple" ,width/16 + width/8* 6,-Math.floor(Math.random()*500));
-            else if(results[i].get("color")== 7) oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_brown" ,width/16 + width/8* 7,-Math.floor(Math.random()*500));
-            else oridurus[i] = new Oriduru("oriduru/monitor"+results[i].get("quality")+"_brown" ,width/16 + width/8* 7,-Math.floor(Math.random()*500));
+            /***/if(results[i].get("color")== 0) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 0,-Math.floor(Math.random()*500));
+            else if(results[i].get("color")== 5) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 1,-Math.floor(Math.random()*500));
+            else if(results[i].get("color")== 4) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 2,-Math.floor(Math.random()*500));
+            else if(results[i].get("color")== 1) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 3,-Math.floor(Math.random()*500));
+            else if(results[i].get("color")== 2) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 4,-Math.floor(Math.random()*500));
+            else if(results[i].get("color")== 3) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 5,-Math.floor(Math.random()*500));
+            else if(results[i].get("color")== 6) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 6,-Math.floor(Math.random()*500));
+            else if(results[i].get("color")== 7) oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 7,-Math.floor(Math.random()*500));
+            else oridurus[i] = new Oriduru(results[i].get("color"),results[i].get("quality"),width/16 + width/8* 7,-Math.floor(Math.random()*500));
           }
           
           
@@ -66,32 +72,39 @@ function move(){
         if(oridurus[i] != null) oridurus[i].move(oridurus);
     }
     
+    if(show_counter>0) show_counter++;
     
-    for(var i=0; i<new_oriduru_color.length;i++){
-        if(new_oriduru_color[i] != -1){
-            for(var j=0;j<oridurus.length;j++){
-                if(oridurus[j] == null){
-                    if(new_oriduru_color[i]== 0) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_red" ,width/16 + width/8* 0,-Math.floor(Math.random()*500));
-                    else if(new_oriduru_color[i]== 5) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_pink" ,width/16 + width/8* 1,-Math.floor(Math.random()*500));
-                    else if(new_oriduru_color[i]== 4) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_orange" ,width/16 + width/8* 2,-Math.floor(Math.random()*500));
-                    else if(new_oriduru_color[i]== 1) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_yellow" ,width/16 + width/8* 3,-Math.floor(Math.random()*500));
-                    else if(new_oriduru_color[i]== 2) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_green" ,width/16 + width/8* 4,-Math.floor(Math.random()*500));
-                    else if(new_oriduru_color[i]== 3) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_blue" ,width/16 + width/8* 5,-Math.floor(Math.random()*500));
-                    else if(new_oriduru_color[i]== 6) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_purple" ,width/16 + width/8* 6,-Math.floor(Math.random()*500));
-                    else if(new_oriduru_color[i]== 7) oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_brown" ,width/16 + width/8* 7,-Math.floor(Math.random()*500));
-                    else oridurus[j] = new Oriduru("oriduru/monitor"+new_oriduru_quality[i]+"_brown" ,width/16 + width/8* 7,-Math.floor(Math.random()*500));
-                    j = oridurus.length+1;
-                }
+    if(show_counter==0){
+        for(var i=0; i<new_oriduru_color.length;i++){
+            if(new_oriduru_color[i] != -1){
+                show_color = new_oriduru_color[i];
+                show_quality = new_oriduru_quality[i];
+                show_comment = new_oriduru_comment[i];
+                show_counter = 1;
+                new_oriduru_color[i] = -1;
+                break;
             }
-            new_oriduru_color[i] = -1;
         }
-        
     }
     
-    
-    
-    
-    
+    if(show_counter>show_wait){
+        show_counter = 0;
+        for(var i=0;i<oridurus.length;i++){
+            if(oridurus[i] == null){
+                /***/if(show_color==0) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 0,-Math.floor(Math.random()*500));
+                else if(show_color==5) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 1,-Math.floor(Math.random()*500));
+                else if(show_color==4) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 2,-Math.floor(Math.random()*500));
+                else if(show_color==1) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 3,-Math.floor(Math.random()*500));
+                else if(show_color==2) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 4,-Math.floor(Math.random()*500));
+                else if(show_color==3) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 5,-Math.floor(Math.random()*500));
+                else if(show_color==6) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 6,-Math.floor(Math.random()*500));
+                else if(show_color==7) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 7,-Math.floor(Math.random()*500));
+                else oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 7,-Math.floor(Math.random()*500));
+                break;
+            }
+        }
+    }
+
     
     if(timer - five_timer > 6000){
         //データ取得
@@ -119,10 +132,24 @@ function move(){
 //------------------------------------------------------------------------------
 function draw() {
     ctx.globalCompositeOperation="source-over";
-	drawRect(width/2,height/2,width,height,255,255,255,255);
+	drawRect(width/2,height/2,width,height,99,199,242,255);
     
     for(var i=0;i<oridurus.length;i++){
         if(oridurus[i] != null) oridurus[i].draw();
+    }
+    
+    if(show_counter>0){
+        var c_alpha = 0;
+        if(show_counter<30){
+            c_alpha = 255 * (show_counter/30.0);
+        }else if(show_counter<show_wait-30){
+            c_alpha = 255;
+        }else{
+            c_alpha = 255 * ((show_wait-show_counter)/30.0);
+        }
+        drawImage(oriduru_image[show_color][show_quality], width/2, height/3, 700, 700, 10, c_alpha);
+        drawImage(img_window, width/2, height/3*2, 1200, 2000, 0, c_alpha);
+        drawText(show_comment,width/2-(show_comment.length*100)/2,880,80,0,0,0,c_alpha);
     }
     
     /*

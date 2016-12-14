@@ -1,6 +1,22 @@
+var oriduru_image = new Array(8);
+for(var i=0;i<oriduru_image.length;i++){
+    oriduru_image[i] = new Array(5);
+    for(var j=0;j<oriduru_image[i].length;j++){
+        if(i==0) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_red");
+        if(i==1) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_yellow");
+        if(i==2) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_green");
+        if(i==3) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_blue");
+        if(i==4) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_orange");
+        if(i==5) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_pink");
+        if(i==6) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_purple");
+        if(i==7) oriduru_image[i][j] = creatImage("oriduru/monitor"+(j+1)+"_brown");
+    }
+}
+
 class Oriduru {
-    constructor(img,x,y) {
-        this.img = creatImage(img);
+    constructor(col,qua,x,y) {
+        this.color = col;
+        this.quality = qua;
         this.x = x;
         this.y = y;
         this.vx = 0;//Math.floor(Math.random()*3)-1;
@@ -74,7 +90,7 @@ class Oriduru {
     draw(){
         if(this.exist){
             //ctx.globalCompositeOperation="lighter";
-            drawImage(this.img, this.x, this.y, this.size, this.size, this.rotate, 255);
+            drawImage(oriduru_image[this.color][this.quality-1], this.x, this.y, this.size, this.size, this.rotate, 255);
             ctx.globalCompositeOperation="source-over";
             //drawCircle(this.x,this.y,this.size*0.3/2,0,255,0,0.5);
         }
