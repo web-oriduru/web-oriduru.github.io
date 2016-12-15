@@ -38,7 +38,7 @@ class SendOriduru{
                     this.x = touch_x;
                     this.y = touch_y;
                 }else{
-                    if(this.y < this.center_y && this.last2_y-this.y > 1){
+                    if(this.y < this.center_y && this.last2_y-this.y > 0.5){
                         this.send_speed = this.last2_y-this.y;
                     }else{
                         this.x += (this.center_x - this.x)/50;

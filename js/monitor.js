@@ -31,6 +31,7 @@ function load(){
     GameScore.fetchAll()
     .then(function(results){
           oriduru_count = results.length;
+          console.log(results.length);
           console.log("oriduru_num : "+oriduru_count);
           var first_num = oriduru_count;
           if(first_num>50) first_num = 50;
@@ -160,7 +161,7 @@ function draw() {
             c_alpha = 255 * ((show_wait-show_counter)/30.0);
         }
         drawImage(img_circle, width/2, height/2, 1200, 1200, show_counter/10, c_alpha/2);
-        drawImage(oriduru_image[show_color][show_quality], width/2, height/3, 700*(c_alpha/255.0), 700*(c_alpha/255.0), 10, c_alpha);
+        drawImage(oriduru_image[show_color][show_quality-11], width/2, height/3, 700*(c_alpha/255.0), 700*(c_alpha/255.0), 10, c_alpha);
         drawImage(img_window, width/2, height/3*2, 1200, 2000, 0, c_alpha);
         drawText(show_comment,width/2-(show_comment.length*100)/2,880,80,0,0,0,c_alpha);
     }
