@@ -167,6 +167,7 @@ function draw() {
     
     drawText("現在、　　　　　　羽",1350,150,40,0,0,0,255);
     drawText(oriduru_count,1700-Math.floor(Math.log10(oriduru_count)+1)*45,150,80,0,0,0,255);
+    drawText("1000羽で原爆ドーム追加！",1400,220,30,0,0,0,200);
     
     /*
     setFontSize(32);

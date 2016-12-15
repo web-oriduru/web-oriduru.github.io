@@ -49,13 +49,13 @@ function drawImage(img,x,y,w,h,r,a){
 //------------------------------------------------------------------------------
 function drawText(text,x,y,size,r,g,b,a){
     setFontSize(size);
-    ctx.fillStyle ='rgba('+r+','+g+','+b+','+a+')';
+    ctx.fillStyle ='rgba('+(r/255.0)+','+(g/255.0)+','+(b/255.0)+','+(a/255.0)+')';
     ctx.fillText(text,x*dw,y*dh);
 }
 //------------------------------------------------------------------------------
 function drawLine(x1,y1,x2,y2,r,g,b,a){
 	//ctx.globalCompositeOperation="lighter";
-	ctx.strokeStyle ='rgba('+r+','+g+','+b+','+a+')';
+	ctx.strokeStyle ='rgba('+(r/255.0)+','+(g/255.0)+','+(b/255.0)+','+(a/255.0)+')';
 	ctx.beginPath();
 	ctx.moveTo(x1*dw,y1*dh);
 	ctx.lineTo(x2*dw,y2*dh);
