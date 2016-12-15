@@ -28,12 +28,9 @@ function load(){
     
     //データ取得
     var GameScore = ncmb.DataStore("SendOriduru");
-    GameScore.fetchAll()
+    GameScore.order("time",true).count().fetchAll()
     .then(function(results){
-          var now_time = new Date();
-          console.log(now_time);
-          console.log(results[0].get("createDate"));
-          oriduru_count = results.length;
+          oriduru_count = results.count;
           console.log("oriduru_num : "+oriduru_count);
           var first_num = oriduru_count;
           if(first_num>50) first_num = 50;
@@ -115,17 +112,19 @@ function move(){
     if(timer - five_timer > 6000){
         //データ取得
         var GameScore = ncmb.DataStore("SendOriduru");
-        GameScore.fetchAll().then(function(results){
-              if(results.length > oriduru_count){
+        GameScore.order("time",true).count().fetchAll()
+        .then(function(results){
+              if(results.count > oriduru_count){
                                   var num = 0;
-                                  for(var i = oriduru_count; i < results.length; i++){
+                                  for(var i = 0; i < (results.count - oriduru_count); i++){
                                         new_oriduru_color[num] = results[i].get("color");
                                         new_oriduru_quality[num] = results[i].get("quality");
                                         new_oriduru_comment[num] = results[i].get("comment");
                                         num++;
+                                        console.log("new oriduru!");
                                   }
               }
-              oriduru_count = results.length;
+              oriduru_count = results.count;
               console.log("oriduru_num : "+oriduru_count);
         })
         .catch(function(err){
@@ -163,7 +162,7 @@ function draw() {
             c_alpha = 255 * ((show_wait-show_counter)/30.0);
         }
         drawImage(img_circle, width/2, height/2, 1200, 1200, show_counter/10, c_alpha/2);
-        drawImage(oriduru_image[show_color][show_quality-11], width/2, height/3, 700*(c_alpha/255.0), 700*(c_alpha/255.0), 10, c_alpha);
+        drawImage(oriduru_image[show_color][show_quality-1], width/2, height/3, 700*(c_alpha/255.0), 700*(c_alpha/255.0), 10, c_alpha);
         drawImage(img_window, width/2, height/3*2, 1200, 2000, 0, c_alpha);
         drawText(show_comment,width/2-(show_comment.length*100)/2,880,80,0,0,0,c_alpha);
     }
