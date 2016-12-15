@@ -485,6 +485,7 @@ class Paper {
                 testClass.set("color", this.color_num);
                 testClass.set("comment", this.input_text);
                 testClass.set("quality", this.quality);
+                testClass.set("time", timer);
                 testClass.save()
                 .then(function(){})
                 .catch(function(err){});

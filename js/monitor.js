@@ -30,8 +30,10 @@ function load(){
     var GameScore = ncmb.DataStore("SendOriduru");
     GameScore.fetchAll()
     .then(function(results){
+          var now_time = new Date();
+          console.log(now_time);
+          console.log(results[0].get("createDate"));
           oriduru_count = results.length;
-          console.log(results.length);
           console.log("oriduru_num : "+oriduru_count);
           var first_num = oriduru_count;
           if(first_num>50) first_num = 50;
