@@ -30,20 +30,19 @@ class SendOriduru{
         
         if(this.mode == 2){
             if(this.send_speed>0){
-                this.y-=this.send_speed;
-                if(this.y < -800) return true;
+                this.y -= this.send_speed;
+                if(this.y < -1200) return true;
                 
             }else{
                 if(touching){
                     this.x = touch_x;
                     this.y = touch_y;
                 }else{
-                    if(this.y < this.center_y && this.last2_y-this.y > 0){
-                        this.send_speed = this.last2_y-this.y;
-                    }else{
-                        this.x += (this.center_x - this.x)/50;
-                        this.y += (this.center_y - this.y)/50;
-                    }
+                    this.x += (this.center_x - this.x)/50;
+                    this.y += (this.center_y - this.y)/50;
+                }
+                if(this.y < this.center_y && this.last2_y-this.y > 50){
+                    this.send_speed = (this.last2_y-this.y)/5;
                 }
             }
         
