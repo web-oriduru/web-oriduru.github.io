@@ -10,7 +10,7 @@ var show_comment = "コメント";
 var show_counter = 0;
 var show_wait = 300;
 var img_window = creatImage("completion/sousin_fukidashi");
-var img_clowd = creatImage("completion/sousin_backkumo");
+var img_clowd = creatImage("monitor/monitor_back");
 var img_circle = creatImage("completion/complete_circle");
 var clowd_counter = 0;
 var ncmb = new NCMB("ff35ae3dd5a5aa93d58f4981e263cf74a9e9a1de08088807440a75b62e64bfd1","3e58744998bc64a634d8bb28a5e3237eb7ae8b2047252225dc501eedf62d0dbc");
@@ -134,7 +134,7 @@ function move(){
         five_timer = timer;
     }
     
-    clowd_counter = (clowd_counter+1)%1000000;
+    clowd_counter = (clowd_counter+1)%(width*10);
     
 }
 //------------------------------------------------------------------------------
@@ -142,12 +142,8 @@ function draw() {
     ctx.globalCompositeOperation="source-over";
 	drawRect(width/2,height/2,width,height,99,199,242,255);
     
-    drawImage(img_clowd,  100+clowd_counter/50, 600, 700, 1400, 0, 255);
-    drawImage(img_clowd,  500+clowd_counter/50, 1000, 700, 1400, 0, 255);
-    drawImage(img_clowd, 1100+clowd_counter/50, 500, 700, 1400, 0, 255);
-    drawImage(img_clowd, 1500+clowd_counter/50, 800, 700, 1400, 0, 255);
-    drawImage(img_clowd, 1800+clowd_counter/50, 600, 700, 1400, 0, 255);
-    
+    drawImage(img_clowd, width/2+clowd_counter/10, height/2, width, height, 0, 255);
+    drawImage(img_clowd, -width/2+clowd_counter/10, height/2, width, height, 0, 255);
     
     for(var i=0;i<oridurus.length;i++){
         if(oridurus[i] != null) oridurus[i].draw();
