@@ -216,6 +216,7 @@ class Paper {
             if(rand==3) document.getElementById("audioSE04").play();
         }
         
+        if(this.num == 1) this.hit_r = 150;
         this.setNext( 1,890,1100,700,930,false,1);
         this.setNext( 2,this.x2,this.y2,430,660,true,-1);
         this.setNext( 3,this.x2,this.y2,180,410,false,-1);
@@ -246,7 +247,7 @@ class Paper {
         if(this.num == 21) this.setBlink(-1,-1,1,1.0,0,660,690);
         this.setNext(21,this.x2,this.y2,660,690,false,-1);
         
-        if(this.num == 22) this.hit_r = 80;
+        //if(this.num == 22) this.hit_r = 120;
         this.setNext(22,410,700,660,580,true,7);
         if(this.num == 23) this.setBlink(790,560,1,1.0,0,910,710);
         this.setNext(23,920,700,660,580,false,-1);
@@ -284,7 +285,7 @@ class Paper {
         if(this.num == 39) this.setBlink(-1,-1,1,1.0,0,580,800);
         this.setNext(39,580,800,580,800,false,-1);
         
-        if(this.num == 40) this.hit_r = 50;
+        //if(this.num == 40) this.hit_r = 100;
         if(this.num == 40) this.setBlink(640,800,1,0.6,-20,710,820);
         this.setNext(40,710,820,580,790,false,13);
         if(this.num == 41) this.setBlink(500,800,2,0.6,20,450,820);
@@ -300,7 +301,7 @@ class Paper {
         if(this.num == 45) touching = false;
         this.setNext(45,580,800,580,800,false,17);
         
-        if(this.num == 46) this.hit_r = 80;
+        //if(this.num == 46) this.hit_r = 120;
         if(this.num == 46) this.setBlink(620,800,1,1.0,40,580,1180);
         this.setNext(46,580,1180,580,450,false,-1);
         if(this.num == 47) this.setBlink(-1,-1,0,1.0,0,580,800);
@@ -549,8 +550,8 @@ class Paper {
         }else if(this.num <= 50){
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
             
-            //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
-            //drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
+            drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
+            drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
             
             if(this.blink_arrow != null){
                 this.blink_arrow.draw();
