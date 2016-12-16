@@ -550,8 +550,8 @@ class Paper {
         }else if(this.num <= 50){
             if(img[this.img_num] != null) drawImage(img[this.img_num], width/2, height/2, width, height, 0, 255);
             
-            drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
-            drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
+            //drawCircle(this.x1,this.y1,this.hit_r,0,255,0,0.5);
+            //drawCircle(this.x2,this.y2,this.hit_r,0,255,0,0.5);
             
             if(this.blink_arrow != null){
                 this.blink_arrow.draw();

@@ -85,6 +85,7 @@ function move(){
                 show_comment = new_oriduru_comment[i];
                 show_counter = 1;
                 new_oriduru_color[i] = -1;
+                document.getElementById("audioSE01").play();
                 break;
             }
         }
