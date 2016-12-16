@@ -93,7 +93,8 @@ function move(){
     
     if(show_counter>show_wait){
         show_counter = 0;
-        for(var i=0;i<oridurus.length;i++){
+        var i;
+        for(i=0;i<oridurus.length;i++){
             if(oridurus[i] == null){
                 /***/if(show_color==0) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 0,-Math.floor(Math.random()*500));
                 else if(show_color==5) oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 1,-Math.floor(Math.random()*500));
@@ -106,6 +107,13 @@ function move(){
                 else oridurus[i] = new Oriduru(show_color,show_quality,width/16 + width/8* 7,-Math.floor(Math.random()*500));
                 break;
             }
+        }
+        if(i==oridurus.length || i==oridurus.length-1){
+            delete oridurus[0];
+            for(var j=0;j<oridurus.length-1;j++){
+                oridurus[j] = oridurus[j+1];
+            }
+            oridurus[oridurus.length-1] = null;
         }
     }
 
